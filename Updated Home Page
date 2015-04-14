@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	</head>
+
+	<head>
+		<h1> <strong>Bizchat Homepage</strong> </h1>
+	</head>
+
+
+	<body>
+
+	 <!-- Static navbar -->
+		  <nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">BizChat</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="#">Home</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				  <li><a href="#">Logout</a></li>
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div><!--/.container-fluid -->
+		  </nav>
+
+		<div class="row">
+		  	<div class="col-sm-4">
+		      	<div id="profilebar">
+					<h4><strong>Account Info</strong></h4>
+					<p><strong>John Doe</strong></p>
+					<img src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
+					<p></p>
+					<p> <strong>Email:</strong> j.doe_123@comcast.net </p>
+				
+				</div>
+			</div>
+			<div class="col-sm-4">
+		      	<div id="profilebar">
+					<h4><strong>Room List</strong></h4>
+						<div id="roomlist">
+		  				<!-- Main component -->
+		  				<div class="list-group">
+							<a href="#" class="list-group-item active"> Room 1 </a>
+							<a href="#" class="list-group-item">Room 2</a>
+							<a href="#" class="list-group-item">Room 3</a>
+					  	</div>
+					</div>
+			  	</div>
+			</div>
+		  	<div class="col-sm-4">
+		      	<div id="mainchat">
+					<h4><strong>Main Chat</strong></h4>
+			  	</div>
+			</div>
+		</div>
+	</body>
+</html>
