@@ -28,7 +28,9 @@
 		  </nav>
 
 		<div class="row">
+		<!-- Main body of page -->
 		  	<div class="col-sm-4">
+		  		<!-- User Profile Information -->
 		      	<div id="profilebar">
 				<div class="span12" style="border: 2px solid black">
 				<head>
@@ -40,7 +42,7 @@
 					<p><strong>John Doe</strong></p>
 					<img src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
 					<p></p>
-					<p> <strong>Email:</strong> j.doe_123@comcast.net </p>
+					<p> <strong>Email:</strong> j.doe_123@example.com </p>
 					<p></p>
 					<button type="button" class="btn btn-warning">View Your Rooms</button>
 					<p></p>
@@ -50,6 +52,7 @@
 					<p></p>
 					
 				<div class="span12" style="border: 2px solid black">
+					<!-- Notifications list -->
 					<h4><strong><u>Notifications</u></strong></h4>
 					<table class="table table-hover">
 						 <thead>
@@ -80,8 +83,10 @@
 				</div>
 				</div>
 			</div>
+
 			<div class="col-sm-4">
-		      	<div id="profilebar">
+				<!-- List of public rooms -->
+		      	<div id="roomlist">
 				<div class="span12" style="border: 2px solid black">
 					<h4><strong><u>Room List</u></strong></h4>
 						<div id="roomlist">
@@ -103,11 +108,15 @@
 					</div>
 			  	</div>
 			</div>
+
 		  	<div class="col-sm-4">
+		  		<!-- Main chat room -->
 		      	<div id="mainchat">
 				<div class="span12" style="border: 2px solid black">
 					<h4><strong>Main Chat</strong></h4>
 					
+    				<div id="chatbox"></div>
+
 					<form>
 					  <div class="col-xs-9">
 						<input type="message" class="form-control" id="Mainmessage" placeholder="Type Message">
