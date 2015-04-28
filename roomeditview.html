@@ -29,6 +29,59 @@
 			  </div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
 		  </nav>
+	<div class="row">
+		<!-- Main body of page -->
+		  	<div class="col-sm-4">
+		  		<!-- User Profile Information -->
+				<div class="span12" style="border: 2px solid black">
+			      	<div id="roominfobar" style="padding:10px">
+					<head>
+						<div class='btn-toolbar pull-right'>
+						<button type="button" class="btn btn-primary btn-sm">Edit Account</button>
+						</div>
+						<h4><strong><u>Account Info</u></strong></h4>
+						</head>
+						<p><strong>Room Title</strong></p>
+						<p></p>
 
+						<!--Privacy Setting Check Box-->
+						<p> <strong>Privacy:</strong></p>
+						<form action="">
+						<input type="radio" name="roomprivacy" value="public">Public
+						<input type="radio" name="roomprivacy" value="private">Private
+						</form>
+						<br>
+						<p></p>
+						<p> <strong>Room Description:</strong></p>
+						<p></p>
+						<p><strong>Date to Destroy</strong></p>
+					</div>	
+				</div>
+			</div>
+
+			<div class="col-sm-8">
+				<!-- List of Users Subscribed to room -->
+				<div class="span12" style="border: 2px solid black">
+				<div id="roomlist" style="padding:10px">
+					<h4><strong><u>Guest Information</u></strong></h4>
+						<div id="guestlist">
+		  				<!-- Main component -->
+						<form class="navbar-form">
+							<div class="form-group" style="display:inline;">
+							<div class="input-group">
+								<input type="text" class="form-control">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+							</div>
+							</div>
+						</form>
+		  				<div class="list-group">
+							<a href="#" class="list-group-item active"> Room 1 </a>
+							<a href="#" class="list-group-item">Room 2</a>
+							<a href="#" class="list-group-item">Room 3</a>
+					  	</div>
+					</div>	
+					</div>
+			  	</div>
+			</div>
 	</body>
 </html>
