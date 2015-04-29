@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	</head>
+
+	<head>
+		<h1> <strong>Bizchat Homepage</strong> </h1>
+	</head>
+
+
+	<body style="padding:20px">
+
+		<!-- Static navbar (on every view) -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">BizChat</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="./mainpageview.html">User Profile</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+				  <li><a href="mainchatview.html">Main Chat</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				  <li><a href="index.html">Logout</a></li>
+				</ul>
+			  </div>
+			</div>
+		</nav>
+
+		<div class="row">
+			<!-- Main body of page -->
+		  	<div class="col-sm-4">
+		  		<!-- User Profile Information -->
+				<div class="span12" style="border: 2px solid black">
+		      	<div id="profilebar" style="padding:10px">
+				<head>
+					<div class='btn-toolbar pull-right'>
+					<button type="button" class="btn btn-primary btn-sm">Edit Account</button>
+					</div>
+					<h4><strong><u>Account Info</u></strong></h4>
+					</head>
+					<p><strong>John Doe</strong></p>
+					<img src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
+					<p></p>
+					<p> <strong>Email:</strong> j.doe_123@example.com </p>
+					<p></p>
+					<!-- Link to userroomlistview.html-->
+					<a class="btn btn-warning" href = "./userroomlistview.html">View Your Rooms</a>
+					<p></p>
+				</div>	
+					<p></p>
+					<p></p>
+					<p></p>
+					
+				<div class="span12" style="border: 1px solid black">
+					<!-- Notifications list: to be moved to nav bar drop-down menu -->
+					<h4><strong><u>Notifications</u></strong></h4>
+					<table class="table table-hover">
+						 <thead>
+							<tr>
+								<th>#</th>
+								<th>Notification ID</th>
+								<th>From</th>
+							</tr>
+						 </thead>
+						 <tbody>
+						 <tr>
+								<td>1</td>
+								<td>1234</td>
+								<td>Bill Gates</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>1244</td>
+								<td>Admin</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>1444</td>
+								<td>Russel Wilson</td>
+							</tr>
+							</tbody>
+					</table>
+				</div>
+				</div>
+			</div>
+
+			<div class="col-sm-8">
+				<!-- List of public rooms -->
+				<div class="span12" style="border: 2px solid black">
+				<div id="roomlist" style="padding:10px">
+					<h4><strong><u>Room List</u></strong></h4>
+						<div id="roomlist">
+		  				<!-- Main component -->
+						<form class="navbar-form">
+							<div class="form-group" style="display:inline;">
+							<div class="input-group">
+								<input type="text" class="form-control">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+							</div>
+							</div>
+						</form>
+		  				<div class="list-group">
+							<a href="#" class="list-group-item active"> Room 1 </a>
+							<a href="#" class="list-group-item">Room 2</a>
+							<a href="#" class="list-group-item">Room 3</a>
+					  	</div>
+					</div>	
+					</div>
+			  	</div>
+			</div>
+		</div>
+	
+	</body>
+</html>
