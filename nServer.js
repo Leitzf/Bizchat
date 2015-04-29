@@ -1,30 +1,42 @@
-var http = require('http');
-var fs = require('fs');
+var express = require('express');
 var url = require('url');
+var app = express();
 
-var message = [
-	'Hello World',
-	'From a basic Node.js server',
-	'Take Luck'
-];
+//serve static content for the app from the 'pages' directory in the app dir
+app.use('/images', express.static('./img'));
 
-http.createServer( function (req, res) {
-	res.setHeader('Content-Type', "text/html");
-	res.writeHead(200);
+app.get('/one', function (req, res) {
+	res.send('request one');
+});
 
-	var filename = url.parse(req.url).pathname.slice(1);
-	
-	if (filename === '') {
-		filename = 'index.html';
+app.get('/add', function (req, res) {
+	var urlParts = url.parse(req.url, true);
+	var query = urlParts.query;
+	var sum = query.var1 + query.var2;
+	var msg = 'addition of ' + query.var1 + ' plus ' + query.var2 + ' equals ' + sum;
+	console.log(msg);
+	res.send(msg);
+});
+
+app.get('/name/:fname', function (req, res) {
+	var name;
+	var fname = req.param('fname');
+	if (fname === 'israelh') {
+		name = fname + ' hilerio';
 	}
-	
-	console.log('filename: ' + filename);
-	
-	fs.readFile('./pages2/' + filename, 'utf8', function (err, data) {
-	  if (err) {
-		return console.log(err);
-	  }
-	  res.end(data);
-	});
-	
-}).listen(8080);
+	else {
+		name = fname + ' world';
+	}
+	console.log(name);
+	res.send("Your name is: "  + name);
+});
+
+app.param('fname', function (req, res, next, value) {
+	console.log('The param value is: ' + value);
+	next();
+});
+
+app.use(express.static('./views'));
+
+
+app.listen(8000);
