@@ -4,27 +4,31 @@
 	</head>
 
 	<body>
-	 <!-- Static navbar -->
-		  <nav class="navbar navbar-default">
+		<!-- Static navbar (on every view) -->
+		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 			  <div class="navbar-header">
 				<a class="navbar-brand" href="#">BizChat</a>
 			  </div>
 			  <div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="./mainpageview.html">User Profile</a></li>
 				</ul>
+				<ul class="nav navbar-nav">
+				  <li><a href="mainchatview.html">Main Chat</a></li>
+				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="#">Logout</a></li>
+				  <li><a href="homepageview.html">Logout</a></li>
 				</ul>
-			  </div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		  </nav>
-		  
-		<div class="container-fluid">  
-		 <div class="col-md-1"></div>
-		<div class="col-md-10">
+			  </div>
+			</div>
+		</nav>
+
 		<!-- Main body of page -->
+		<div class="container-fluid">  
+		<div class="col-md-1"></div>
+			<div class="col-md-10">
 		  	<div class="Rooms">
 		  		<!-- User Profile Information -->
 		      	<div id="profilebar">
@@ -62,7 +66,6 @@
 							</tr>
 						</tbody>
 				</table>
-				
 				<div class='btn-toolbar pull-right'>
 				<button type="button" class="btn btn-success">+ Add A Room</button>
 				</div>
