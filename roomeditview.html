@@ -3,13 +3,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	</head>
 
-	<head>
-		<h1> <strong>Bizchat</strong> </h1>
-	</head>
-
-
-	<body style="padding:20px">
-
+	<body>
 	 <!-- Static navbar -->
 		  <nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -20,68 +14,158 @@
 				<ul class="nav navbar-nav">
 				  <li><a href="#">Home</a></li>
 				</ul>
-				<ul class="nav navbar-nav">
-				  <li><a href="#">Main Chat</a></li>
-				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				  <li><a href="#">Logout</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
 		  </nav>
-	<div class="row">
+		  
+		 <head>
+			<div class="col-md-1"></div>
+			<h2><strong>Add/Modify Room Information</strong></h2>
+		 </head>
+		 <div class="col-md-10"></div>
+		 <div class="col-md-1">
+		 	<div class='btn-toolbar pull-right'>
+				<button type="button" class="btn btn-success">Publish</button>
+			</div>
+		 </div>
+		 <div class="col-md-1"></div>
+	
+		<div class="container-fluid">  
+		 <div class="col-md-1"></div>
+		<div class="col-md-4">
 		<!-- Main body of page -->
-		  	<div class="col-sm-4">
+		  	<div class="rooms">
 		  		<!-- User Profile Information -->
-				<div class="span12" style="border: 2px solid black">
-			      	<div id="roominfobar" style="padding:10px">
-					<head>
-						<div class='btn-toolbar pull-right'>
-						<button type="button" class="btn btn-primary btn-sm">Edit Account</button>
-						</div>
-						<h4><strong><u>Account Info</u></strong></h4>
-						</head>
-						<p><strong>Room Title</strong></p>
-						<p></p>
-
-						<!--Privacy Setting Check Box-->
-						<p> <strong>Privacy:</strong></p>
-						<form action="">
-						<input type="radio" name="roomprivacy" value="public">Public
-						<input type="radio" name="roomprivacy" value="private">Private
-						</form>
-						<br>
-						<p></p>
-						<p> <strong>Room Description:</strong></p>
-						<p></p>
-						<p><strong>Date to Destroy</strong></p>
-					</div>	
-				</div>
-			</div>
-
-			<div class="col-sm-8">
-				<!-- List of Users Subscribed to room -->
-				<div class="span12" style="border: 2px solid black">
-				<div id="roomlist" style="padding:10px">
-					<h4><strong><u>Guest Information</u></strong></h4>
-						<div id="guestlist">
-		  				<!-- Main component -->
-						<form class="navbar-form">
-							<div class="form-group" style="display:inline;">
-							<div class="input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-							</div>
-							</div>
-						</form>
-		  				<div class="list-group">
-							<a href="#" class="list-group-item active"> Room 1 </a>
-							<a href="#" class="list-group-item">Room 2</a>
-							<a href="#" class="list-group-item">Room 3</a>
-					  	</div>
-					</div>	
+		      	<div id="profilebar">
+				<head>
+					<h3><strong>Room Information</strong></h3>
+				</head>
+				
+				<form>
+					<div class="form-group">
+						<label for="exampleInputRoomName">Room Name</label>
+						<input type="text" class="form-control" id="exampleInputRoomName" placeholder="Enter Room Name" required>
 					</div>
-			  	</div>
+					<div class="form-group">
+						<label for="exampleInputRoomDescription">Room Description</label>
+					<input type="text" class="form-control" id="exampleInputRoomDescription" placeholder="Enter Room Description" required>
+				  </div>
+				  <div class="checkbox">
+					<label>
+					  <input type="checkbox">Public (private by default)
+					</label>
+				  </div>
+
+				    <div class="form-group">
+						<label for="exampleInputDate">Date To Destroy</label>
+						<div class="input-group">
+						  <input type="date" class="form-control" id="exampleInputDate" placeholder="date">
+							<div class="checkbox">
+						<label>
+							<input type="checkbox" align="right"> Do Not Destroy
+						</label>
+						</div>
+						</div>
+					 </div>
+				</form>
 			</div>
-	</body>
+		</div>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+		<!-- Main body of page -->
+		  	<div class="guests">
+		  		<!-- User Profile Information -->
+		      	<div id="profilebar">
+				<head>
+					<h3><strong>Guest Information</strong></h3>
+				</head>
+				<table class="table table-bordered">
+					<col width="5%">
+					<col width="50%">
+					<col width="45%">
+						 <thead>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Email</th>
+							</tr>
+						 </thead>
+						 <tbody>
+							 <tr>
+								<td>
+									 <div class="checkbox" style="text-align:center">
+										<label>
+											<input type="checkbox">
+										</label>
+									 </div>
+								</td>
+								<td>Bill Gates</td>
+								<td>bgates@seattleu.edu</td>
+							 </tr>
+							  <tr>
+								<td>
+									 <div class="checkbox">
+										<label>
+											<input type="checkbox">
+										</label>
+									 </div>
+								</td>
+								<td>Caitlin Jones</td>
+								<td>cjones@seattleu.edu</td>
+							 </tr>
+							  <tr>
+								<td>
+									 <div class="checkbox">
+										<label>
+											<input type="checkbox">
+										</label>
+									 </div>
+								</td>
+								<td>Dan Smith</td>
+								<td>dsmith@seattleu.edu</td>
+							 </tr>
+							  <tr>
+								<td>
+									 <div class="checkbox">
+										<label>
+											<input type="checkbox">
+										</label>
+									 </div>
+								</td>
+								<td>John Doe</td>
+								<td>J_Doe@seattleu.edu</td>
+							 </tr>
+							  <tr>
+								<td>
+									 <div class="checkbox">
+										<label>
+											<input type="checkbox">
+										</label>
+									 </div>
+								</td>
+								<td>Sarah Jane</td>
+								<td>sjane@seattleu.edu</td>
+							 </tr>
+						 
+						 </tbody>
+				</table>
+				
+				
+			</div>
+		</div>
+		</div>
+		
+		</div>
+		<div class="col-md-10"></div>
+		<div class="col-md-1">
+			<div class='btn-toolbar pull-right'>
+				<button type="button" class="btn btn-danger">Delete Room</button>
+			</div>
+		</div>
+		
+	 </body>
 </html>

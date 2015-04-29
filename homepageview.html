@@ -1,116 +1,49 @@
-<html>
-	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	</head>
+  <html lang="en">
 
-	<head>
-		<h1> <strong>Bizchat Homepage</strong> </h1>
-	</head>
+  <head>
+  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Bizchat Sign In</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
 
 
-	<body style="padding:20px">
-
-	 <!-- Static navbar -->
-		  <nav class="navbar navbar-default">
-			<div class="container-fluid">
-			  <div class="navbar-header">
-				<a class="navbar-brand" href="#">BizChat</a>
-			  </div>
-			  <div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-				  <li><a href="#">Home</a></li>
-				</ul>
-				<ul class="nav navbar-nav">
-				  <li><a href="#">Main Chat</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="#">Logout</a></li>
-				</ul>
-			  </div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		  </nav>
-
-		<div class="row">
-		<!-- Main body of page -->
-		  	<div class="col-sm-4">
-		  		<!-- User Profile Information -->
-				<div class="span12" style="border: 2px solid black">
-		      	<div id="profilebar" style="padding:10px">
-				<head>
-					<div class='btn-toolbar pull-right'>
-					<button type="button" class="btn btn-primary btn-sm">Edit Account</button>
-					</div>
-					<h4><strong><u>Account Info</u></strong></h4>
-					</head>
-					<p><strong>John Doe</strong></p>
-					<img src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
-					<p></p>
-					<p> <strong>Email:</strong> j.doe_123@example.com </p>
-					<p></p>
-					<button type="button" class="btn btn-warning">View Your Rooms</button>
-					<p></p>
-				</div>	
-					<p></p>
-					<p></p>
-					<p></p>
-					
-				<div class="span12" style="border: 1px solid black">
-					<!-- Notifications list: to be moved to nav bar drop-down menu -->
-					<h4><strong><u>Notifications</u></strong></h4>
-					<table class="table table-hover">
-						 <thead>
-							<tr>
-								<th>#</th>
-								<th>Notification ID</th>
-								<th>From</th>
-							</tr>
-						 </thead>
-						 <tbody>
-						 <tr>
-								<td>1</td>
-								<td>1234</td>
-								<td>Bill Gates</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>1244</td>
-								<td>Admin</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>1444</td>
-								<td>Russel Wilson</td>
-							</tr>
-							</tbody>
-					</table>
-				</div>
-				</div>
-			</div>
-
-			<div class="col-sm-8">
-				<!-- List of public rooms -->
-				<div class="span12" style="border: 2px solid black">
-				<div id="roomlist" style="padding:10px">
-					<h4><strong><u>Room List</u></strong></h4>
-						<div id="roomlist">
-		  				<!-- Main component -->
-						<form class="navbar-form">
-							<div class="form-group" style="display:inline;">
-							<div class="input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-							</div>
-							</div>
-						</form>
-		  				<div class="list-group">
-							<a href="#" class="list-group-item active"> Room 1 </a>
-							<a href="#" class="list-group-item">Room 2</a>
-							<a href="#" class="list-group-item">Room 3</a>
-					  	</div>
-					</div>	
-					</div>
-			  	</div>
-			</div>
-		</div>
-	</body>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
 </html>
