@@ -8,7 +8,7 @@
 	</head>
 
 
-	<body style="padding:20px">
+	<body onload = "init('home')" style="padding:20px">
 
 		<!-- Static navbar (on every view) -->
 		<nav class="navbar navbar-default">
@@ -35,19 +35,19 @@
 		  	<div class="col-sm-4">
 		  		<!-- User Profile Information -->
 				<div class="span12" style="border: 2px solid black">
-		      	<div id="profilebar" style="padding:10px">
+		      	<div id="profileBar" style="padding:10px">
 				<head>
 					<div class='btn-toolbar pull-right'>
 					<button type="button" class="btn btn-primary btn-sm">Edit Account</button>
 					</div>
 					<h4><strong><u>Account Info</u></strong></h4>
 					</head>
-					<div>
-					<p><strong>John Doe</strong></p>
+					<div onload>
+					<p id="name"><strong></strong></p>
 					</div>
-					<img src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
+					<img id="userPic" src="http://th08.deviantart.net/fs71/200H/i/2012/163/c/e/dick_figures_wallpaper__6_by_ceezor-d538t1f.png" alt="..." class="img-thumbnail">
 					<p></p>
-					<p> <strong>Email:</strong> j.doe_123@example.com </p>
+					<p id="email"> <strong>Email:</strong> j.doe_123@example.com </p>
 					<p></p>
 					<!-- Link to userroomlistview.html-->
 					<a class="btn btn-warning" href = "./userroomlistview.html">View Your Rooms</a>
@@ -115,6 +115,8 @@
 			  	</div>
 			</div>
 		</div>
-	
+	<script type="text/javascript" src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</body>
 </html>
