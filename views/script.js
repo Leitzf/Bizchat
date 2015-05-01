@@ -1,10 +1,5 @@
-
-//retrieveActiveListsFromServer('listsJSON.html');
-
 function init()
 {   
-	//var name = document.getElementById("name");
-	//name.innerHTML = "HAHAHAHA";
     retrieveUserFromServerJSON('./user.json');
      
 }
