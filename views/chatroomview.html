@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	</head>
+	
+	<head>
+		<h1> <strong>Bizchat</strong> </h1>
+	</head>
+
+
+	<body style="padding:20px">
+	
+	<body>
+		<!-- Static navbar (on every view) -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">BizChat</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="./mainpageview.html">User Profile</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+				  <li><a href="mainchatview.html">Main Chat</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+				  <li><a href="index.html">Logout</a></li>
+				</ul>
+			  </div>
+			</div>
+		</nav>
+		
+		<div class="col-sm-8">
+			<!-- Main chat room -->
+		  	<div id="mainchat">
+				<div class="span12" style="border: 1px solid black">
+					<h4><strong>Chat Room</strong></h4>
+					
+
+		  			<!-- chat box (currently a style thing)-->
+					<div id="chatbox" style="  					 color:red;
+					    text-align:left;
+					    margin:0 auto;
+					    margin-bottom:25px;
+					    padding:10px;
+					    background:#fff;
+					    height:270px;
+					    width:300px;
+					    border:1px solid #ACD8F0;
+					    overflow:auto;">
+					    <!--width:430px;-->
+					</div>
+
+					<form>
+					  <div class="col-xs-9">
+						<input type="message" class="form-control" id="Mainmessage" placeholder="Type Message">
+					  </div>
+					  <button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>	
+		  	</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="span12" style="border: 1px solid black">
+					
+				<div id="roomName"><h5><strong>Room 1</strong><h5></div>
+				<div id="userName"> <p><strong>Owner: Sample</strong></p></div>
+				<div id="roomDesc"><p>SpaceSpaceSpace</p></div>
+
+				<h4>User List:</h4>
+				<div id = "roomUserList">
+					<ul class="list-group">
+						<a href="#" class="list-group-item"> Tom </a>
+						<a href="#" class="list-group-item">Jerry</a>
+						<a href="#" class="list-group-item">Gene</a>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+
