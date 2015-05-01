@@ -1,20 +1,22 @@
 
 //retrieveActiveListsFromServer('listsJSON.html');
-var user;
 
 function init()
 {   
-    retrieveUserFromServerJSON('user.json');
+	//var name = document.getElementById("name");
+	//name.innerHTML = "HAHAHAHA";
+    retrieveUserFromServerJSON('./user.json');
      
 }
 
-function retrieveUserFromServer(url, document) {
+function retrieveUserFromServerJSON(url) {
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			user = JSON.parse(xmlhttp.responseText);
+			var user = JSON.parse(xmlhttp.responseText);
             populateUserView(user);
+			
 		}
 	}
 	xmlhttp.open("GET", url, true);
@@ -24,6 +26,11 @@ function retrieveUserFromServer(url, document) {
 function populateUserView(user) {
     var name = document.getElementById("name");
     var email = document.getElementById("email");
-    name.innerHTML = "Fuck you";
-    email.innerHTML = "BLAH";
+	var pic = document.getElementById("userPic");
+	//console.log(user.Fname);
+	//console.log(user.pic);
+    name.innerHTML = "<strong>"+user.Fname + " " + user.Lname+"</strong>";
+    email.innerHTML = user.EmailAddr;
+	pic.innerHTML = "<img  src=\"" + user.Picture + "\" alt=\"...\" class=\"img-thumbnail\">";
 }
+//*/
