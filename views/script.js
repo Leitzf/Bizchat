@@ -8,6 +8,10 @@ function init()
     retrieveUserFromServerJSON('./user.json');
      
 }
+function initRoom()
+{
+	retrieveRoomFromServerJSON('./room1.json');
+}
 
 function retrieveUserFromServerJSON(url) {
 	var xmlhttp = new XMLHttpRequest();
@@ -16,6 +20,20 @@ function retrieveUserFromServerJSON(url) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var user = JSON.parse(xmlhttp.responseText);
             populateUserView(user);
+			
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+function retrieveRoomFromServerJSON(url) {
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var room = JSON.parse(xmlhttp.responseText);
+            populateRoomView(room);
 			
 		}
 	}
@@ -33,4 +51,13 @@ function populateUserView(user) {
     email.innerHTML = user.EmailAddr;
 	pic.innerHTML = "<img  src=\"" + user.Picture + "\" alt=\"...\" class=\"img-thumbnail\">";
 }
-//*/
+
+function populateRoomView(room) {
+    var name = document.getElementById("roomName");
+    var desc = document.getElementById("roomDesc");
+	//console.log(user.Fname);
+	//console.log(user.pic);
+    name.innerHTML = "<strong>"+room.Name+"</strong>";
+    desc.innerHTML = room.Description;
+	pic.innerHTML = "<img  src=\"" + user.Picture + "\" alt=\"...\" class=\"img-thumbnail\">";
+}
