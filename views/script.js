@@ -1,16 +1,16 @@
 function init()
 {   
-    retrieveUserFromServerJSON('./user.json');
+    retrieveUserFromServerJSON('./data/user.json');
      
 }
 function initRoom()
 {
-	retrieveRoomFromServerJSON('./room1.json');
+	retrieveRoomFromServerJSON('./data/room1.json');
 }
 
 function initRoomList(UserID)
 {
-    retrieveRoomListFromServerJSON('./RoomList.json');
+    retrieveRoomListFromServerJSON('./roomlist.json');
 }
 
 
