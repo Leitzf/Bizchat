@@ -19,8 +19,6 @@
   'ngTouch'
   ])
  .config(function ($routeProvider) {
-
-  console.log("What the fuck");
   $routeProvider
   .when('/', {
     templateUrl: '/welcome.html'

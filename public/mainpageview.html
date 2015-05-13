@@ -13,14 +13,14 @@
 				</div>
 				<h4><strong><u>Account Info</u></strong></h4>
 				</head>
-				<a ng-controller='ProfileCtrl'  ng-model="getProfile">
+				<a ng-controller='ProfileCtrl'  ng-model="getProfile()">
 
-					<p id="name"><strong>{{Fname}} {{Lname}}</strong></p>
+					<p id="name"><strong>{{user.Fname}} {{user.Lname}}</strong></p>
 					
-					<a id="userPic"> {{Picture}}</a>
-
+					<!-- <a id="userPic"> {{user.Picture}}</a> -->
+					<img ng-src="{{user.Picture}}" alt="User Portrait" style="width: 300"/>
 					<p></p>
-					<p id="email"> <strong>Email:</strong> {{EmailAddr}}</p>
+					<p id="email"> <strong>Email:</strong> {{user.EmailAddr}}</p>
 					<p></p>
 				</a>
 				<!-- Link to userroomlistview.html-->

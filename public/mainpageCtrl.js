@@ -18,10 +18,15 @@ angular
 			$scope.user = data;
 			});
 			*/
-			$scope.Fname = "Genenenenene";
-			$scope.Lname = "Parmeeeeeesian";
-			$scope.Picture = " Pictures";
-			$scope.EmailAddr = "noob@example.com";
+			console.log("Calling getProfile");
+			$scope.user = {
+				Fname : "Genenenenene",
+				Lname : "Purmishurn",
+				Picture : "http://www.firefoods.co.uk/wp-content/uploads/2013/03/SwedishChef.jpg",
+				EmailAddr : "borkbork@example.com"
+			}
+			var img = new Image();
+			img.src = $scope.user.Picture;
 		};
 	}
 ]);
