@@ -1,10 +1,11 @@
-<div class="container" style="padding:20px">
+<div class="container" style="padding:20px" >
 
 	<div class="row">
 		<!-- Main body of page -->
 	  	<div class="col-sm-4">
 	  		<!-- User Profile Information -->
 			<div class="span12" style="border: 2px solid black">
+	      	
 	      	<div id="profileBar" style="padding:10px">
 			<head>
 				<div class='btn-toolbar pull-right'>
@@ -12,19 +13,22 @@
 				</div>
 				<h4><strong><u>Account Info</u></strong></h4>
 				</head>
-				<div>
-				<p id="name"><strong></strong></p>
-				</div>
-				
-				<a id="userPic"></a>
+				<a ng-controller='ProfileCtrl'  ng-model="getProfile">
 
-				<p></p>
-				<p id="email"> <strong>Email:</strong> j.doe_123@example.com </p>
-				<p></p>
+					<p id="name"><strong>{{Fname}} {{Lname}}</strong></p>
+					
+					<a id="userPic"> {{Picture}}</a>
+
+					<p></p>
+					<p id="email"> <strong>Email:</strong> {{EmailAddr}}</p>
+					<p></p>
+				</a>
 				<!-- Link to userroomlistview.html-->
 				<a class="btn btn-warning" href = "/#/roomlist/1">View Your Rooms</a>
 				<p></p>
 			</div>	
+
+
 				<p></p>
 				<p></p>
 				<p></p>
