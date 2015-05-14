@@ -12,9 +12,8 @@ angular
 .controller('RoomListCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
 		$scope.getRoomList = function() {
-
-			$http.get('publicroomlist.json').success(function(data, status, headers, config) {
-				console.log("Success Roomlist acquired");
+			$http.get('/publicroomlist.json').success(function(data, status, headers, config) {
+				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
 			   $scope.results = data;
 			   
 			   var roomlist = [];
