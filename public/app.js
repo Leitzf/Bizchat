@@ -28,7 +28,7 @@
           controller: 'ProfileCtrl'
         })
   .when('/roomlist/', { //:userID
-    templateUrl: '/userroomlistview.html',
+    templateUrl: '/roomlistview.html',
           controller: 'RoomListCtrl'
         })
   .when('/roomlist/:userId/edit/:roomID', {

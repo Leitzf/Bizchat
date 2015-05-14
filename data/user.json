@@ -1,9 +1,11 @@
-{
-  "Fname": "Gene",
-  "Lname": "Parmesan",
-  "Picture": "https://38.media.tumblr.com/025945b9728c3f411643a4de6fbfccfa/tumblr_moi5mnReof1rtbkkjo1_250.gif",
-  "userID": "1",
-  "EmailAddr": "gparm@gmail.com",
-  "Phone": "206-331-9852",
-  "SubscriptionList": []
-}
+[
+    {
+      "Fname": "Gene",
+      "Lname": "Parmesan",
+      "Picture": "https://38.media.tumblr.com/025945b9728c3f411643a4de6fbfccfa/tumblr_moi5mnReof1rtbkkjo1_250.gif",
+      "userID": "1",
+      "EmailAddr": "gparm@gmail.com",
+      "Phone": "206-331-9852",
+      "SubscriptionList": []
+    }
+]

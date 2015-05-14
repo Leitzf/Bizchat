@@ -1,0 +1,46 @@
+<!-- Main body of page -->
+<div class="container" ng-controller='RoomListCtrl' ng-init='getRoomList()'>  
+	<div class="col-md-1"></div>
+		<div class="col-md-10">
+		  	<div class="Roomlist" >
+		  		<!-- User Profile Information -->
+		      	<div id="profilebar">
+				<head>
+					<h2><strong>Your Rooms</strong></h2>
+				</head>
+
+				<div>
+					<table class="table table-bordered">
+							 <thead>
+								<tr>
+									<th>Room Title</th>
+									<th>Room Description</th>
+									<th style="text-align:center">Date To Destroy</th>
+									<th style="text-align:center">Modify</th>
+								</tr>
+							 </thead>
+							 <tbody >
+
+							 <!--Generate Room List body (AngularJS Controller)-->
+							 	<tr ng-repeat="room in roomlist">
+									<td id="roomName">{{room.Name}}</td>
+									<td id="roomDesc">{{room.Description}}</td>
+									<td id="roomDestroy" align="center">{{room.DateDestroy}}}</td>
+									<td align="center"><button type="button" class="btn btn-warning btn-sm">
+										Modify
+										</button>
+									</td>
+
+									<td>{{$index}}</td>
+								</tr>
+							</tbody>
+					</table>
+				</div>
+
+				<div class='btn-toolbar pull-right'>
+					<button type="button" class="btn btn-success">+ Add A Room</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
