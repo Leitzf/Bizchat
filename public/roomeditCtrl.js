@@ -9,15 +9,18 @@
  */
 angular
 .module('BizchatApp')
-.controller('RoomEditCtrl', ['$scope', '$rootScope', '$http',
-	function($scope,  $rootScope, $http) {
+.controller('RoomEditCtrl', ['$scope', '$rootScope', '$http', '$route',
+	function($scope,  $rootScope, $http, $route) {
 		$scope.getRoomData = function() { //@TODO
+			$scope.roomId = $route.current.params.roomID;
+			console.log("Room ID " + $scope.roomID);
+
 			$http.get('/data/roomlist.json').success(function(data, status, headers, config) {
 				//data is an array of rooms, id the room by RoomID and return that data
 				$scope.results = data;
 				
 				//var i = RoomID;
-				var i = 0;
+				var i = $scope.roomID;
 				var room = {
 					"Name": data[i].Name,
 				   	"Description": data[i].Description,
@@ -26,7 +29,8 @@ angular
 				   	"PrivacyEnabled":data[i].PrivacyEnabled
 				};
 				//@TODO Implement showing user list for a given room
-			   $rootScope.room = $scope.room;
+			   $rootScope.room = room;
+			   $scope.room = room; 
 
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Room data");
