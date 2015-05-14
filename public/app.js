@@ -31,9 +31,9 @@
     templateUrl: '/roomlistview.html',
           controller: 'RoomListCtrl'
         })
-  .when('/roomlist/:userId/edit/:roomID', {
+  .when('/roomlist/edit/:roomID', {
     templateUrl: '/roomeditview.html',
-          //controller: 'RoomEditCtrl'
+          controller: 'RoomEditCtrl'
         })
   .when('/mainchat', {
     templateUrl: '/mainchatview.html',

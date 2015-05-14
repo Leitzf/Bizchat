@@ -22,7 +22,7 @@
     {
       "RoomID": "3",
       "Name": "WTF is node.js",
-      "UserID": "1"
+      "UserID": "1",
       "Description": "Discuss how to use node.js",
       "DateDestroy":"2015-10-29",
       "PrivacyEnabled": "True",

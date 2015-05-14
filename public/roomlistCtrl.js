@@ -12,7 +12,7 @@ angular
 .controller('RoomListCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
 		$scope.getRoomList = function() {
-			$http.get('/publicroomlist.json').success(function(data, status, headers, config) {
+			$http.get('/data/roomlist.json').success(function(data, status, headers, config) {
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
 			   $scope.results = data;
 			   
@@ -21,7 +21,8 @@ angular
 				   roomlist[i] = { 
 				   		"Name": data[i].Name,
 				   		"Description": data[i].Description,
-				   		"DateDestroy": data[i].DateDestroy 
+				   		"DateDestroy": data[i].DateDestroy, 
+				   		"RoomID" : data[i].RoomID
 				   	};
 			   }
 			   $rootScope.roomlist = roomlist;
