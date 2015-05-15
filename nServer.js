@@ -6,7 +6,7 @@ var app = express();
 
 // create application/json parser
 var jsonParser = bodyParser.json();
-
+/*
 var mongoDBConnection = require('./db.toDoSample.config');
 
 var Users;
@@ -101,7 +101,7 @@ function retrieveTasksCount(res, query) {
 	});
 }
 
-
+*/
 
 //serve static content for the app from the 'views' directory in the view
 

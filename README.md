@@ -9,3 +9,5 @@ Nick Simons
 Node.js modules:
 express
 server
+body-parser
+mongoose
