@@ -21,22 +21,6 @@
           <ul class="nav navbar-nav">
             <li><a href="/#/mainchat">Main Chat</a></li>
           </ul>
-		  
-		  
-		  <ul class="nav navbar-nav" ng-controller='DropdownCtrl'>
-				<li class="dropdown" dropdown on-toggle="toggled(open)"> 
-				<a class="dropdown-toggle" data-toggle="dropdown" >
-					Notifications <span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-					<li ng-repeat="note in notifications">
-						<a href>{{note.NotificationCode}}  |  {{note.Sender}}</a>
-					</li>
-					</ul>
-				</li>
-		  </ul>
-		 
-		 
           <!--Hide Logout button when not logged in-->
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/">Logout</a></li>
@@ -67,8 +51,6 @@
     <script src="mainpageCtrl.js"></script>
     <script src="roomlistCtrl.js"></script>
     <script src="roomeditCtrl.js"></script>
-	<script src="createroomCtrl.js"></script>
-	<script src="indexCtrl.js"></script>
-	
+
   </body>
 </html>

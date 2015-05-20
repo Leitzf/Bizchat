@@ -25,24 +25,20 @@
   })
   .when('/main', {
     templateUrl: '/mainpageview.html',
-          controller: 'ProfileCtrl', 
+          controller: 'ProfileCtrl'
         })
   .when('/roomlist/', { //:userID
     templateUrl: '/roomlistview.html',
-          controller: 'RoomListCtrl', 
+          controller: 'RoomListCtrl'
         })
   .when('/roomlist/edit/:roomID', {
     templateUrl: '/roomeditview.html',
-          controller: 'RoomEditCtrl', 
+          controller: 'RoomEditCtrl'
         })
   .when('/mainchat', {
-    templateUrl: '/mainchatview.html'
+    templateUrl: '/mainchatview.html',
           //controller: 'MainChatCtrl'
         })
-  .when('/roomlist/createroom/', {
-	 templateUrl: '/createroomview.html',
-		  controller: 'UserCtrl',
-		})
   .otherwise({
     redirectTo: '/'
   });
