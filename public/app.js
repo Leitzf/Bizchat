@@ -39,6 +39,10 @@
     templateUrl: '/mainchatview.html',
           //controller: 'MainChatCtrl'
         })
+  .when('/roomlist/createroom/', {
+	 templateUrl: '/createroomview.html',
+		  controller: 'UserCtrl',
+		})
   .otherwise({
     redirectTo: '/'
   });
