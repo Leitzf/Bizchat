@@ -34,54 +34,55 @@ angular
 			});
 		};
 
+		//Initial form data, corresponds to ng-model html data
 		$scope.newRoom = {
-			"RoomID": 6,
+			"RoomID": "6",
 			"Name": "",
-			"UserID": 5,
+			"UserID": "5",
 			"Description": "",
-			"DateDestroy":"2020-5-15",
+			"DateDestroy":"",
 			"PrivacyEnabled": "True",
 			"AllowedUsers": [],
 			"Messages": []
 		};
-
-		$scope.postRoom = function() {
-			console.log("POST ROom");
-			$http.get('/data/createRoom.json').success(function(data, status, headers, config) {
-				console.log("got data" + JSON.stringify(data));
-			   	$rootScope.roomlist = data;
-			}).error(function(data, status, headers, config) {
-	  			console.log("Error acquiring Room data");
-	  			return;
-			});
-
-			//Sample declaration of a room
-			$scope.newRoom = {
-				"RoomID": 6,
-				"Name": "SWEEDISH CHEF",
-				"UserID": 5,
-				"Description": "bork",
-				"DateDestroy":"2015-5-15",
-				"PrivacyEnabled": "True",
-				"AllowedUsers": [],
-				"Messages": []
-			};
-			console.log("Data to post");
-
-			$rootScope.roomlist.push(newRoom);
-
-			$http.post('/data/room1.json', $rootScope.roomlist).then(function(data) {
-				//$scope.msg = 'Data saved';
-				console.log("Data saved");
-			});
-			//$scope.msg = 'Data sent: '+ JSON.stringify($scope.newRoom);
-			console.log('Data sent: '+ JSON.stringify($rootScope.roomlist)); 
-			
-
-
-
+		
+		//Test Data
+		//Sample declaration of a room
+		$scope.newRoom = {
+			"RoomID": "6",
+			"Name": "SWEDISH CHEF",
+			"UserID": "5",
+			"Description": "BORK",
+			"DateDestroy":"2015-5-15",
+			"PrivacyEnabled": "True",
+			"AllowedUsers": [],
+			"Messages": []
 		};
 		
+		$scope.postRoom = function() {
+			
+			console.log("POST Room");
+			$http.get('/data/createRoom.json').success(function(data, status, headers, config) {
+				console.log("http.get finds the file");	
+			}).error(function(data, status, headers, config) {
+				console.log("no file found");
+			});
 
+
+			console.log("Data to post" + JSON.stringify($scope.newRoom) );
+
+			//HTTP NOT FOUND ERROR
+			$http({
+				url: '/data/createRoom.json',
+				method: "POST",
+				data: JSON.stringify($scope.newRoom),
+				headers: {'Content-Type': 'application/json'}
+			}).success(function (data, status, headers, config) {
+				console.log("Data saved");
+			}).error(function (data, status, headers, config) {
+				console.log("Data failed");
+			});	
+
+		};
 	}
 ]);
