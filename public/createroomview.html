@@ -1,4 +1,4 @@
-<div class="container">  
+<div class="container" ng-controller='UserCtrl' >  
 	<head>
 		<div class="col-md-1"></div>
 		<h2><strong>Add A Room</strong></h2>
@@ -6,7 +6,7 @@
 	<div class="col-md-10"></div>
 	<div class="col-md-1">
 		<div class='btn-toolbar pull-right'>
-			<a type="button" class="btn btn-success" href="/#/roomlist/">Publish</a>
+			<a type="button" class="btn btn-success" ng-click="postRoom()">Publish</a>
 		</div>
 	</div>
 	<div class="col-md-1"></div>
@@ -20,26 +20,27 @@
 				<head>
 					<h3><strong>Room Information</strong></h3>
 				</head>
-				
+
+				<!--Create Room Form-->
 				<form>
 					<div class="form-group">
 						<label for="exampleInputRoomName">Room Name</label>
-						<input type="text" class="form-control" id="exampleInputRoomName" placeholder="Enter Room Name" required>
+						<input type="text" class="form-control" id="RoomName" ng-model="newRoom.Name" placeholder="Enter Room Name" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputRoomDescription">Room Description</label>
-						<input type="text" class="form-control" id="exampleInputRoomDescription" placeholder="Enter Room Description" rows="4" required>
+						<input type="text" class="form-control" id="RoomDescription" ng-model="newRoom.Description" placeholder="Enter Room Description" rows="4" required>
 					</div>
 
-					<div class="form-group">
-						<input type="radio" name="public/private" value="public">Public<br>
-						<input type="radio" name="public/private" value="private">Private
+					<div class="form-group" ng-model="newRoom.PrivacyEnabled">
+						<input type="radio" name="public/private" value="False">Public<br>
+						<input type="radio" name="public/private" value="True">Private
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputDate">Date To Destroy</label>
 						<div class="input-group">
-							<input type="date" class="form-control" id="exampleInputDate" placeholder="date"> 
+							<input type="date" class="form-control" id="InputDate" ng-model="newRoom.DateDestroy" placeholder="date"> 
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" align="right"> Do Not Destroy
@@ -48,6 +49,7 @@
 						</div>
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>

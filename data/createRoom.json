@@ -1,0 +1,32 @@
+[
+    {
+      "RoomID": "1",
+      "Name": "SaaS Project Chatroom",
+      "UserID": "1",
+      "Description": "Discuss how much fun we are having with this project",
+      "DateDestroy":"2015-5-9",
+      "PrivacyEnabled": "False",
+      "AllowedUsers": [],
+      "Messages": []
+    },
+    {
+      "RoomID": "2",
+      "Name": "JSON is Cool",
+      "UserID": "1",
+      "Description": "Discuss how awesome JSON is",
+      "DateDestroy":"NONE",
+      "PrivacyEnabled": "False",
+      "AllowedUsers": [],
+      "Messages": []
+    },
+    {
+      "RoomID": "3",
+      "Name": "WTF is node.js",
+      "UserID": "1",
+      "Description": "Discuss how to use node.js",
+      "DateDestroy":"2015-10-29",
+      "PrivacyEnabled": "True",
+      "AllowedUsers": [],
+      "Messages": []
+    }
+]
