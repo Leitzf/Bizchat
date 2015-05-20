@@ -6,7 +6,7 @@ var app = express();
 
 // create application/json parser
 var jsonParser = bodyParser.json();
-/*
+
 var mongoDBConnection = require('./db.toDoSample.config');
 
 var Users;
@@ -23,12 +23,14 @@ mongoose.connection.on('open', function() {
 	var NotificationSchema = new Schema( 
 		{
 			NotificationID: Number,
+			NotificationCode: Number,
 			TimeStamp: String,
+			Sender: String,
 			Message: String
 		},
 	   {collection: 'notifications'}
 	);
-	Notifications = mongoose.model('notifications', TasksSchema);
+	Notifications = mongoose.model('notifications', NotificationSchema);
 	
 	var UserSchema = new Schema( 
 		{
@@ -46,7 +48,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'users'}
 	);
-	Users = mongoose.model('Users', ListsSchema);
+	Users = mongoose.model('Users', UserSchema);
 	
 	
 	
@@ -60,7 +62,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'messages'}
 	);
-	Messages = mongoose.model('messages', TasksSchema);
+	Messages = mongoose.model('messages', MessageSchema);
 	
 	var RoomSchema = new Schema( 
 		{
@@ -75,7 +77,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'rooms'}
 	);
-	Rooms = mongoose.model('rooms', TasksSchema);
+	Rooms = mongoose.model('rooms', RoomSchema);
 	console.log('models have been created');
 });
 
@@ -101,9 +103,15 @@ function retrieveTasksCount(res, query) {
 	});
 }
 
-*/
+
 
 //serve static content for the app from the 'views' directory in the view
+
+app.get('/app/lists/:listId/count', function (req, res) {
+	var id = req.params.listId;
+	console.log('Query single list with id: ' + id);
+	retrieveTasksCount(res, {listId: id});
+});
 
 
 
