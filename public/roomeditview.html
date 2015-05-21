@@ -1,4 +1,4 @@
-<div class="container" ng-controller='RoomEditCtrl' ng-init='getRoomData()'>  
+<div class="container">  
 	<head>
 		<div class="col-md-1"></div>
 		<h2><strong>Add/Modify Room Information</strong></h2>
@@ -21,14 +21,14 @@
 					<h3><strong>Room Information</strong></h3>
 				</head>
 				
-				<form>
+				<form ng-controller='RoomEditCtrl' ng-init='getRoomData()'>
 					<div class="form-group">
 						<label for="exampleInputRoomName">Room Name</label>
-						<input type="text" class="form-control" id="exampleInputRoomName" placeholder="Enter Room Name" value="{{room.Name}}" required>
+						<input type="text" class="form-control" id="exampleInputRoomName" placeholder="Enter Room Name" ng-model="{{room.Name}}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputRoomDescription">Room Description</label>
-						<input type="text" class="form-control" id="exampleInputRoomDescription" placeholder="Enter Room Description" value="{{room.Description}}" required>
+						<input type="text" class="form-control" id="exampleInputRoomDescription" placeholder="Enter Room Description" ng-model="{{room.Description}}" required>
 					</div>
 
 					<div class="form-group">
@@ -39,7 +39,7 @@
 					<div class="form-group">
 						<label for="exampleInputDate">Date To Destroy</label>
 						<div class="input-group">
-							<input type="date" class="form-control" id="exampleInputDate" placeholder="date" value="{{room.DateDestroy}}"> 
+							<input type="date" class="form-control" id="exampleInputDate" placeholder="date" ng-model="{{room.DateDestroy}}"> 
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" align="right"> Do Not Destroy
@@ -48,51 +48,53 @@
 						</div>
 					</div>
 				</form>
+
+
+				
 			</div>
 		</div>
 	</div>
+	
 	<div class="col-md-1"></div>
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<!-- Main body of page -->
-		<div class="guests">
+		<div class="guests" ng-controller='UserCtrl' ng-init='getUserList()'>
 			<!-- User Profile Information -->
 			<div id="profilebar">
 				<head>
 					<h3><strong>Guest Information</strong></h3>
 				</head>
-				<p>Number of Users:{{Number of Users}}</p>
-				<table class="table table-bordered">
-					<col width="5%">
-					<col width="50%">
-					<col width="45%">
+				<table class="table table-bordered" style="height:300px;">
+					<col width="7%">
+					<col width="20%">
+					<col width="73%">
 					<thead>
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Email</th>
+						<tr style="width: 100%; display: inline-table;">
+							<th width="7%"></th>
+							<th width="20%">User Image</th>
+							<th width="73%">User Name</th>
 						</tr>
 					</thead>
-					<tbody>
-
-						<tr ng-repeat="user in userlist">
-							<td>
-								<div class="checkbox" style="text-align:center">
-									<label>
-										<input type="checkbox">
-									</label>
-								</div>
-							</td>
-							<td>{{user.Fname}} {{user.Lname}}</td>
-							<td>{{user.EmailAddr}}</td>
-						</tr>
-
-					</tbody>
-				</table>
 				
-				
+						<tbody style="overflow-y: scroll; height: 258px; width: 100%; position: absolute;">
+							<tr ng-repeat="user in userlist" style="width: 97.5%; display: inline-table;">
+								<td width="7%" style="vertical-align:middle;">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox">
+										</label>
+									</div>
+								</td>
+								<td width="19.9%" id="picture"><img ng-src="{{user.Picture}}" alt="User Portrait" style="width: 90; vertical-align:middle;"></td>
+								<td width="73.1%" id="name" style="vertical-align:middle;">{{user.Fname}} {{user.Lname}}</td>
+							</tr>
+
+						</tbody>
+					</table>
 			</div>
 		</div>
 	</div>
+
 </div>
 <div class="col-md-10"></div>
 <div class="col-md-1">

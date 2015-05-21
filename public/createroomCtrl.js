@@ -45,20 +45,7 @@ angular
 			"AllowedUsers": [],
 			"Messages": []
 		};
-		
-		//Test Data
-		//Sample declaration of a room
-		$scope.newRoom = {
-			"RoomID": "6",
-			"Name": "SWEDISH CHEF",
-			"UserID": "5",
-			"Description": "BORK",
-			"DateDestroy":"2015-5-15",
-			"PrivacyEnabled": "True",
-			"AllowedUsers": [],
-			"Messages": []
-		};
-		
+
 		$scope.postRoom = function() {
 			
 			console.log("POST Room");
