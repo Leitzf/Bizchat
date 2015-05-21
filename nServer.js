@@ -1,4 +1,5 @@
 var express = require('express');
+var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var url = require('url');
@@ -14,9 +15,9 @@ var Rooms;
 var Messages;
 var Notifications;
 
-console.log(mongoDBConnection.uri);
 
 mongoose.connect(mongoDBConnection.uri);
+
 mongoose.connection.on('open', function() {
 	var Schema = mongoose.Schema;
 	
@@ -30,7 +31,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'notifications'}
 	);
-	Notifications = mongoose.model('notifications', NotificationSchema);
+	Notifications = mongoose.model('Notifications', NotificationSchema);
 	
 	var UserSchema = new Schema( 
 		{
@@ -46,7 +47,7 @@ mongoose.connection.on('open', function() {
 			}],
 			Notifications: [Notifications]
 		},
-	   {collection: 'users'}
+	   {collection: 'Users'}
 	);
 	Users = mongoose.model('Users', UserSchema);
 	
@@ -60,7 +61,7 @@ mongoose.connection.on('open', function() {
 			Message: String, 
 			TimeStamp: String
 		},
-	   {collection: 'messages'}
+	   {collection: 'Messages'}
 	);
 	Messages = mongoose.model('messages', MessageSchema);
 	
@@ -75,34 +76,27 @@ mongoose.connection.on('open', function() {
 			}],
 			Messages: [Messages]
 		},
-	   {collection: 'rooms'}
+	   {collection: 'Rooms'}
 	);
 	Rooms = mongoose.model('rooms', RoomSchema);
 	console.log('models have been created');
 });
 
-function retrieveAllLists(res) {
-	var query = Lists.find({});
-	query.exec(function (err, itemArray) {
-		res.json(itemArray);
-	});
-}
 
 function retrieveUserInfo(res, query) {
-	var query = Tasks.findOne(query);
-	query.exec(function (err, itemArray) {
-		res.json(itemArray);		
-	});
-}
+    var find = Users.findOne({'EmailAddr':'gparm@gmail.com'}, function(err, itemArray){
+     console.log(itemArray);
+     res.json(itemArray);
+});
 
-function retrieveTasksCount(res, query) {
-	var query = Tasks.find({listId:1}).select('tasks').count();
-	query.exec(function (err, numberOfTasks) {
-		console.log('number of tasks: ' + numberOfTasks);
-		res.json(numberOfTasks);
+/*
+	find.exec(function (err, itemArray) {
+        console.log(itemArray);
+		res.json(itemArray);
 	});
+    */
+    
 }
-
 
 
 //serve static content for the app from the 'views' directory in the view
@@ -113,7 +107,11 @@ app.get('/app/lists/:listId/count', function (req, res) {
 	retrieveTasksCount(res, {listId: id});
 });
 
-
+app.get('/user/:EmailAddr', function (req, res) {
+	var id = req.params.userId;
+	console.log('Query user info with id: ' + id);
+	retrieveUserInfo(res, {EmailAddr: id});
+});
 
 app.use('/data', express.static(__dirname+'/data'));
 app.use(express.static(__dirname+'/public'));

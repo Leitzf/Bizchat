@@ -22,14 +22,15 @@ angular
 				userID: 1
 			};
 
-			$http.get('/data/user.json').success(function(data, status, headers, config) {
+			$http.get('/user/gparm@gmail.com').success(function(data, status, headers, config) {
 		   		$scope.results = data;
 		   		$scope.user = {
-					Fname : data[0].Fname,
-					Lname : data[0].Lname,
-					Picture : data[0].Picture,
-					EmailAddr : data[0].EmailAddr
+					Fname : data.Fname,
+					Lname : data.Lname,
+					Picture : data.Picture,
+					EmailAddr : data.EmailAddr                    
 				}
+                console.log(data);
       			return;
     		}).
    			 error(function(data, status, headers, config) {
