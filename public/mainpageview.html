@@ -14,17 +14,14 @@
 						<h4><strong><u>Account Info</u></strong></h4>
 					</head>
 					
-					<!-- AngularJS Form Data -->
+					<!-- AngularJS Form Profile Data -->
 					<form   ng-init='getProfile()'>
-
 						<p id="name"><strong>{{user.Fname}} {{user.Lname}}</strong></p>
-
 						<img ng-src="{{user.Picture}}" alt="User Portrait" style="width: 300"/>
 						<p></p>
 						<p id="email"> <strong>Email:</strong> {{user.EmailAddr}}</p>
 						<p></p>
 					</form>
-
 					<!-- Link to userroomlistview.html-->
 					<a class="btn btn-warning" href = "/#/roomlist/">View Your Rooms</a>
 					<p></p>

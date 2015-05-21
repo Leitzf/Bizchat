@@ -15,8 +15,8 @@ angular
 			
 			//Default data: Swedish Chef
 			$scope.user = {
-				Fname : "Geneebedee",
-				Lname : "Purmishurn",
+				Fname : "FirstName",
+				Lname : "LastName",
 				Picture : "http://www.firefoods.co.uk/wp-content/uploads/2013/03/SwedishChef.jpg",
 				EmailAddr : "borkbork@example.com",
 				userID: 1
