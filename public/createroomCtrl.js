@@ -49,19 +49,19 @@ angular
 		$scope.postRoom = function() {
 			
 			console.log("POST Room");
-			/*
-			$http.get('/data/createRoom.json').success(function(data, status, headers, config) {
+			
+			$http.get('/rooms').success(function(data, status, headers, config) {
 				console.log("http.get finds the file");	
 			}).error(function(data, status, headers, config) {
 				console.log("no file found");
 			});
-			*/
+			
 
 			console.log("Data to post" + JSON.stringify($scope.newRoom) );
 
 			//HTTP NOT FOUND ERROR
 			$http({
-				url: '/data/createRoom.json',
+				url: '/addroom',
 				method: "POST",
 				data: JSON.stringify($scope.newRoom),
 				headers: {'Content-Type': 'application/json'}
