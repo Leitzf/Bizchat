@@ -22,7 +22,7 @@ angular
 				userID: 1
 			};
 
-			$http.get('/user/gparm@gmail.com').success(function(data, status, headers, config) {
+			$http.get('/user/1').success(function(data, status, headers, config) {
 		   		$scope.results = data;
 		   		$scope.user = {
 					Fname : data.Fname,

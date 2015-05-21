@@ -23,8 +23,8 @@ mongoose.connection.on('open', function() {
 	
 	var NotificationSchema = new Schema( 
 		{
-			NotificationID: Number,
-			NotificationCode: Number,
+			NotificationID: String,
+			NotificationCode: String,
 			TimeStamp: String,
 			Sender: String,
 			Message: String
@@ -38,12 +38,12 @@ mongoose.connection.on('open', function() {
 			Fname: String,
 			Lname: String,
 			Picture: String,
-			UserID: Number,
+			UserID: String,
 			EmailAddr: String,
 			Password: String,
 			Phone: String,
 			SubscriptionList: [	{
-				RoomID: Number
+				RoomID: String
 			}],
 			Notifications: [Notifications]
 		},
@@ -55,9 +55,9 @@ mongoose.connection.on('open', function() {
 	
 	var MessageSchema = new Schema( 
 		{
-			RoomID: Number,
-			MessageID: Number,
-			userID: Number,
+			RoomID: String,
+			MessageID: String,
+			userID: String,
 			Message: String, 
 			TimeStamp: String
 		},
@@ -67,12 +67,12 @@ mongoose.connection.on('open', function() {
 	
 	var RoomSchema = new Schema( 
 		{
-			RoomID: Number,
+			RoomID: String,
 			Name: String,
 			Description: String,
-			PrivacyEnabled: Number,
+			PrivacyEnabled: String,
 			AllowedUsers: [{
-				UserID: Number
+				UserID: String
 			}],
 			Messages: [Messages]
 		},
@@ -84,10 +84,18 @@ mongoose.connection.on('open', function() {
 
 
 function retrieveUserInfo(res, query) {
-    var find = Users.findOne({'EmailAddr':'gparm@gmail.com'}, function(err, itemArray){
-     console.log(itemArray);
-     res.json(itemArray);
+    var find = Users.findOne(query, function(err, itemArray){
+    res.json(itemArray);
 });
+}
+
+
+function retrieveRoomList(res, query) {
+ 	var query = Rooms.find({});
+	query.exec(function (err, itemArray) {
+		res.json(itemArray);		
+	});
+}
 
 /*
 	find.exec(function (err, itemArray) {
@@ -96,7 +104,7 @@ function retrieveUserInfo(res, query) {
 	});
     */
     
-}
+
 
 
 //serve static content for the app from the 'views' directory in the view
@@ -107,10 +115,15 @@ app.get('/app/lists/:listId/count', function (req, res) {
 	retrieveTasksCount(res, {listId: id});
 });
 
-app.get('/user/:EmailAddr', function (req, res) {
+app.get('/user/:userId', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query user info with id: ' + id);
-	retrieveUserInfo(res, {EmailAddr: id});
+	retrieveUserInfo(res, {UserID: id});
+});
+
+app.get('/rooms/', function (req, res) {
+	console.log('Query for all rooms');
+	retrieveRoomList(res, req);
 });
 
 app.use('/data', express.static(__dirname+'/data'));
