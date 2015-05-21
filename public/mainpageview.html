@@ -1,10 +1,10 @@
-<div class="container" style="padding:20px" ng-controller='ProfileCtrl'>
+<div class="container" style="padding:20px">
 
 	<div class="row">
 		<!-- Main body of page -->
 		<div class="col-sm-4">
 			<!-- User Profile Information -->
-			<div class="span12" style="border: 2px solid black">
+			<div class="span12" style="border: 2px solid black" ng-controller='ProfileCtrl'>
 
 				<div id="profileBar" style="padding:10px">
 					<head>
@@ -37,7 +37,7 @@
 
 		<div class="col-sm-8">
 			<!-- List of public rooms -->
-			<div class="span12" style="border: 2px solid black">
+			<div class="span12" style="border: 2px solid black" ng-controller='RoomListCtrl' ng-init='getRoomList()'>
 				<div id="roomlist" style="padding:10px">
 					<h4><strong><u>Room List</u></strong></h4>
 					<div id="roomlist">
@@ -50,11 +50,18 @@
 								</div>
 							</div>
 						</form>
-						<div class="list-group">
-							<a href="#" class="list-group-item active"> Room 1 </a>
-							<a href="#" class="list-group-item">Room 2</a>
-							<a href="#" class="list-group-item">Room 3</a>
-						</div>
+						<table class="table table-condensed" style="height:400px;">
+							<tbody style="overflow-y: scroll; height: 400px; width: 93%; position: absolute;">
+								<tr ng-repeat="room in roomlist" style="width: 97.5%; display: inline-table;">
+									<td  style="vertical-align:middle;">
+										<a href="/#/main" class="list-group-item">{{room.Name}}</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						
+						
 					</div>	
 				</div>
 			</div>
