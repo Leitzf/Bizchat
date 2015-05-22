@@ -61,11 +61,7 @@ angular
 
 			//HTTP NOT FOUND ERROR
 			$http({
-<<<<<<< HEAD
 				url: '/addroom/',
-=======
-				url: '/addroom',
->>>>>>> origin/Current
 				method: "POST",
 				data: JSON.stringify($scope.newRoom),
 				headers: {'Content-Type': 'application/json'}
