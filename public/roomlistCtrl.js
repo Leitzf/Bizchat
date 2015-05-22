@@ -39,7 +39,6 @@ angular
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
 			   $scope.results = data;
 			   
-
 				var userID = 1; //Obtain current user's ID
 
 			   var roomlist = [];

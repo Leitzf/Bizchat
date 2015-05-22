@@ -90,6 +90,12 @@ function retrieveUserInfo(res, query) {
 });
 }
 
+function retrieveUsers(res, query) {
+  	var query = Users.find({});
+ 	query.exec(function (err, itemArray) {
+ 		res.json(itemArray);		
+ 	});
+ }
 
 function retrieveRoomList(res, query) {
  	var query = Rooms.find({});
@@ -99,9 +105,9 @@ function retrieveRoomList(res, query) {
 }
 
 function retrieveRoom(res, query) {
- 	var find = Users.findOne(query, function(err, itemArray){
-    res.json(itemArray);
-});
+ 	var find = Rooms.findOne(query, function(err, itemArray){
+	    res.json(itemArray);
+	});
 }
 
 function getRoomCount() {
@@ -129,6 +135,12 @@ app.get('/user/:userId', function (req, res) {
 	retrieveUserInfo(res, {UserID: id});
 });
 
+app.get('/users/', function (req, res) {
+	var id = req.params.userId;
+	console.log('Query users');
+	retrieveUsers(res, req);
+});
+
 app.get('/rooms/', function (req, res) {
 	console.log('Query for all rooms');
 	retrieveRoomList(res, req);
@@ -142,8 +154,8 @@ app.get('/room/:roomId', function (req, res) {
 
 app.post('/addroom/', jsonParser, function(req, res) {
 	console.log("Attempting to post");
-	var jsonObj = req.body;
-	jsonObj.RoomID = getRoomCount()+1;
+	//var jsonObj = req.body;
+	//jsonObj.RoomID = getRoomCount()+1;
 	Rooms.create([jsonObj], function (err) {
 		if (err) {
 			console.log('object creation failed');

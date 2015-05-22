@@ -13,9 +13,8 @@ angular
 	function($scope,  $rootScope, $http) {
 
 		$scope.getUserList = function() {
-			$http.get('/data/users.json').success(function(data, status, headers, config) {
+			$http.get('/users/').success(function(data, status, headers, config) {
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
-			   $scope.results = data;
 			   
 			   var userlist = [];
 			   for (var i = 0; i < data.length; i++) {
@@ -48,6 +47,7 @@ angular
 
 		$scope.postRoom = function() {
 			/*
+			//Obtaining the Room ID
 			var newRoomID = 1;
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
