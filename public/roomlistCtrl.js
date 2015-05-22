@@ -18,12 +18,13 @@ angular
 			   
 			   var roomlist = [];
 			   for (var i = 0; i < data.length; i++) {
-				   roomlist[i] = { 
-				   		"Name": data[i].Name,
-				   		"Description": data[i].Description,
-				   		"DateDestroy": data[i].DateDestroy, 
-				   		"RoomID" : data[i].RoomID
-				   	};
+			   		var newRoom = { 
+			   			"Name": data[i].Name,
+			   			"Description": data[i].Description,
+			   			"DateDestroy": data[i].DateDestroy, 
+			   			"RoomID" : data[i].RoomID
+			   		};	
+				   	roomlist.push(newRoom);
 			   }
 			   $rootScope.roomlist = roomlist;
 
@@ -32,5 +33,34 @@ angular
 	  			return;
 			});
 		};
+
+		$scope.getUserRoomList = function() {
+			$http.get('/rooms/').success(function(data, status, headers, config) {
+				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
+			   $scope.results = data;
+			   
+
+				var userID = 1; //Obtain current user's ID
+
+			   var roomlist = [];
+			   for (var i = 0; i < data.length; i++) {
+			   		var newRoom = { 
+			   			"Name": data[i].Name,
+			   			"Description": data[i].Description,
+			   			"DateDestroy": data[i].DateDestroy, 
+			   			"RoomID" : data[i].RoomID
+			   		};	
+			   		if (data[i].UserID == userID){
+					   	roomlist.push(newRoom);
+			   		}
+			   }
+			   $rootScope.roomlist = roomlist;
+
+			}).error(function(data, status, headers, config) {
+	  			console.log("Error acquiring Room data");
+	  			return;
+			});
+		};
+
 	}
 ]);

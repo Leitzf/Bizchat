@@ -15,6 +15,8 @@ angular
 			$scope.roomId = $route.current.params.roomID;
 			console.log("Room ID " + $scope.roomID);
 
+			var userID = 1; //Obtain current user's ID
+
 			$http.get('/room/:roomId').success(function(data, status, headers, config) {
 				//data is an array of rooms, id the room by RoomID and return that data
 				$scope.results = data;

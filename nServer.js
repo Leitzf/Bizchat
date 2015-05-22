@@ -69,6 +69,7 @@ mongoose.connection.on('open', function() {
 		{
 			RoomID: String,
 			Name: String,
+			UserID: String,
 			Description: String,
 			PrivacyEnabled: String,
 			AllowedUsers: [{

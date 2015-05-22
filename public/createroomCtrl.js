@@ -36,9 +36,9 @@ angular
 
 		//Initial form data, corresponds to ng-model html data
 		$scope.newRoom = {
-			"RoomID": "6",
+			"RoomID": "nanbreads",
 			"Name": "",
-			"UserID": "5",
+			"UserID": "1",
 			"Description": "",
 			"DateDestroy":"",
 			"PrivacyEnabled": "True",
@@ -47,26 +47,28 @@ angular
 		};
 
 		$scope.postRoom = function() {
-			
-			console.log("POST Room");
-			
-			$http.get('/rooms').success(function(data, status, headers, config) {
-				console.log("http.get finds the file");	
+			/*
+			var newRoomID = 1;
+			$http.get('/rooms/').success(function(data, status, headers, config) {
+				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
+			   $scope.results = data;
+			   newRoomID += data.length();
+			   console.log("Room ID = "+newRoomID);
 			}).error(function(data, status, headers, config) {
-				console.log("no file found");
+	  			console.log("Error acquiring Room count");
 			});
-			
-
+			$scope.newRoom.RoomID = roomID;
+			*/
 			console.log("Data to post" + JSON.stringify($scope.newRoom) );
 
 			//HTTP NOT FOUND ERROR
 			$http({
 				url: '/addroom/',
 				method: "POST",
-				data: JSON.stringify($scope.newRoom),
+				data:  JSON.stringify($scope.newRoom),
 				headers: {'Content-Type': 'application/json'}
 			}).success(function (data, status, headers, config) {
-				console.log("Data saved");
+				console.log("Data sent = " + JSON.stringify($scope.newRoom) );
 			}).error(function (data, status, headers, config) {
 				console.log("Data failed");
 			});	
