@@ -97,13 +97,20 @@ function retrieveRoomList(res, query) {
 	});
 }
 
-/*
-	find.exec(function (err, itemArray) {
-        console.log(itemArray);
-		res.json(itemArray);
+function retrieveRoom(res, query) {
+ 	var find = Users.findOne(query, function(err, itemArray){
+    res.json(itemArray);
+});
+}
+
+function getRoomCount() {
+	var itemArray;
+ 	var query = Rooms.find({});
+	query.exec(function (err, itemArray) {	
+		return itemArray.length;
 	});
-    */
-    
+	
+}
 
 
 
@@ -124,6 +131,23 @@ app.get('/user/:userId', function (req, res) {
 app.get('/rooms/', function (req, res) {
 	console.log('Query for all rooms');
 	retrieveRoomList(res, req);
+});
+
+app.get('/room/:roomId', function (req, res) {
+	var id = req.params.roomId;
+	console.log('Query single room with id: ' + id);
+	retrieveRoom(res, {RoomID: id});
+});
+
+app.post('/addroom/', jsonParser, function(req, res) {
+	console.log("Attempting to post");
+	var jsonObj = req.body;
+	jsonObj.RoomID = getRoomCount()+1;
+	Rooms.create([jsonObj], function (err) {
+		if (err) {
+			console.log('object creation failed');
+		}
+	});
 });
 
 app.use('/data', express.static(__dirname+'/data'));
