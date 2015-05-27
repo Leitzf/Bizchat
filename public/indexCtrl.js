@@ -11,7 +11,6 @@
  .module('BizchatApp')
  .controller('DropdownCtrl', function ($scope, $log, $http, $rootScope) {
 	$http.get('/data/notifications.json').success(function(data, status, headers, config) {
-		$scope.results = data;
 					
 		var notifications = [];
 		for (var i = 0; i < data.length; i++) {

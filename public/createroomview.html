@@ -30,9 +30,9 @@
 						<input type="text" class="form-control" id="RoomDescription" ng-model="newRoom.Description" placeholder="Enter Room Description" rows="4" required>
 					</div>
 
-					<div class="form-group" ng-model="newRoom.PrivacyEnabled">
-						<input type="radio" name="public/private" value="False">Public<br>
-						<input type="radio" name="public/private" value="True">Private
+					<div class="form-group">
+						<input type="radio" ng-model="newRoom.PrivacyEnabled" name="public/private" value="False">Public<br>
+						<input type="radio" ng-model="newRoom.PrivacyEnabled" name="public/private" value="True">Private
 					</div>
 
 					<div class="form-group">
@@ -52,6 +52,7 @@
 		</div>
 	</div>
 	<div class="col-md-1"></div>
+
 	<div class="col-md-6">
 		<!-- Main body of page -->
 		<div class="guests" ng-controller='UserCtrl' ng-init='getUserList()'>
@@ -87,6 +88,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 <div class="col-md-10"></div>
 <div class="col-md-2">

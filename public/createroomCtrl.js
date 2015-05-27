@@ -14,7 +14,6 @@ angular
 
 		$scope.getUserList = function() {
 			$http.get('/users/').success(function(data, status, headers, config) {
-				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
 			   
 			   var userlist = [];
 			   for (var i = 0; i < data.length; i++) {
@@ -46,6 +45,7 @@ angular
 		};
 
 		$scope.postRoom = function() {
+			//@TODO Generate New Room ID
 			/*
 			//Obtaining the Room ID
 			var newRoomID = 1;

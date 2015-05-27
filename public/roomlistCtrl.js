@@ -13,10 +13,9 @@ angular
 	function($scope,  $rootScope, $http) {
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
-				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
 			   
-			   var roomlist = [];
-			   for (var i = 0; i < data.length; i++) {
+			   	var roomlist = [];
+			   	for (var i = 0; i < data.length; i++) {
 			   		var newRoom = { 
 			   			"Name": data[i].Name,
 			   			"Description": data[i].Description,
@@ -24,8 +23,8 @@ angular
 			   			"RoomID" : data[i].RoomID
 			   		};	
 				   	roomlist.push(newRoom);
-			   }
-			   $rootScope.roomlist = roomlist;
+			   	}
+			   	$rootScope.roomlist = roomlist;
 
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Room data");
@@ -35,24 +34,22 @@ angular
 
 		$scope.getUserRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
-				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
-			   //$scope.results = data;
 			   
 				var userID = 1; //Obtain current user's ID
 
-			   var roomlist = [];
-			   for (var i = 0; i < data.length; i++) {
-			   		var newRoom = { 
-			   			"Name": data[i].Name,
-			   			"Description": data[i].Description,
-			   			"DateDestroy": data[i].DateDestroy, 
-			   			"RoomID" : data[i].RoomID
-			   		};	
+			   	var roomlist = [];
+			   	for (var i = 0; i < data.length; i++) {
 			   		if (data[i].UserID == userID){
+			   			var newRoom = { 
+			   				"Name": data[i].Name,
+			   				"Description": data[i].Description,
+			   				"DateDestroy": data[i].DateDestroy, 
+			   				"RoomID" : data[i].RoomID
+			   			};	
 					   	roomlist.push(newRoom);
 			   		}
-			   }
-			   $rootScope.roomlist = roomlist;
+			   	}
+			   	$rootScope.roomlist = roomlist;
 
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Room data");
