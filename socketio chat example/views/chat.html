@@ -11,7 +11,7 @@
 <head>
 
 	<title>Private chat room | Tutorialzine Demo</title>
-
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
 	<link type="text/css" rel="stylesheet" href="../css/stylesheet.css" />
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700" rel="stylesheet" type="text/css">
 
@@ -19,16 +19,48 @@
 </head>
 
 <body>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<div class="container">
+      <!-- Static navbar (on every view) -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+          <a class="navbar-brand" href="/#/main">BizChat</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/#/main">User Profile</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="/#/mainchat">Main Chat</a></li>
+          </ul>
+		  
+		  <ul class="nav navbar-nav" ng-controller='DropdownCtrl'>
+				<li class="dropdown" dropdown on-toggle="toggled(open)"> 
+				<a class="dropdown-toggle" data-toggle="dropdown" >
+					Notifications <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+					<li ng-repeat="note in notifications">
+						<a href>{{note.NotificationCode}}  |  {{note.Sender}}</a>
+					</li>
+					</ul>
+				</li>
+		  </ul>
+		  
+          <!--Hide Logout button when not logged in-->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/">Logout</a></li>
+          </ul>
+          </div>
+        </div>
+      </nav>
 
-	<header class="banner">
-
-		<h1 class="bannertext">
-			<a href="http://tutorialzine.com/2014/03/nodejs-private-webchat/" id="logo">Tutorial<span>zine</span>: NODE.JS CHAT TUTORIAL</a>
-		</h1>
-
-	</header>
-
-
+      <!--Views and Container-->
+      <div ng-view=""></div>
+    </div>
+<div>
+	<link type="text/css" rel="stylesheet" href="../css/stylesheet.css" />
 	<section class="section">
 
 		<!-- These elements are displayed as white info cards in the middle of the screen -->
@@ -136,5 +168,5 @@
 	<script src="../js/chat.js"></script>
 
 </body>
-
+</div>
 </html>
