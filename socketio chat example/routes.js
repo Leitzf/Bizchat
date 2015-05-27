@@ -45,19 +45,21 @@ module.exports = function(app,io){
 
 				socket.emit('peopleinchat', {number: 0});
 			}
-			else if(room.length === 1) {
+			else{ //if(room.length === 1) {
 
 				socket.emit('peopleinchat', {
-					number: 1,
+					number: room.length,
 					user: room[0].username,
 					avatar: room[0].avatar,
 					id: data
 				});
 			}
+			/*
 			else if(room.length >= 2) {
 
 				chat.emit('tooMany', {boolean: true});
 			}
+			*/
 		});
 
 		// When the client emits 'login', save his name and avatar,
@@ -66,7 +68,7 @@ module.exports = function(app,io){
 
 			var room = findClientsSocket(io, data.id);
 			// Only two people per room are allowed
-			if (room.length < 2) {
+			if (1==1) {  //room.length < 2) {
 
 				// Use the socket object to store data. Each client gets
 				// their own unique socket object
@@ -82,7 +84,7 @@ module.exports = function(app,io){
 				// Add the client to the room
 				socket.join(data.id);
 
-				if (room.length == 1) {
+				if (room.length >= 1) {
 
 					var usernames = [],
 						avatars = [];
@@ -104,9 +106,11 @@ module.exports = function(app,io){
 					});
 				}
 			}
+			/*
 			else {
 				socket.emit('tooMany', {boolean: true});
 			}
+			*/
 		});
 
 		// Somebody left the chat
