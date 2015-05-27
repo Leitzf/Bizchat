@@ -67,7 +67,7 @@
 						<th width="73%">User Name</th>
 					</thead>
 						<tbody style="overflow-y: scroll; height: 258px; width: 100%; position:absolute;">
-							<tr ng-repeat="user in userlist" style="width: 97.5%; display: inline-table;">
+							<tr ng-repeat="user in userlist | orderBy: 'Fname'" style="width: 97.5%; display: inline-table;">
 								<td width="7%" style="vertical-align:middle;">
 									<div class="checkbox">
 										<label>

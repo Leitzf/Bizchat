@@ -54,7 +54,7 @@
 						</form>
 						<table class="table table-condensed" style="height:400px;">
 							<tbody style="overflow-y: scroll; height: 400px; width: 93%; position: absolute;">
-								<tr ng-repeat="room in roomlist" style="width: 97.5%; display: inline-table;">
+								<tr ng-repeat="room in roomlist | orderBy: 'Name'" style="width: 97.5%; display: inline-table;">
 									<td  style="vertical-align:middle;">
 										<a href="/#/main" class="list-group-item">{{room.Name}}</a>
 									</td>
