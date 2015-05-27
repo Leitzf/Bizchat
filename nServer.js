@@ -1,9 +1,12 @@
+var port = 8000;
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var url = require('url');
 var app = express();
+var gravatar = require('gravatar');
+var io = require('socket.io').listen(app.listen(port));
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -152,6 +155,12 @@ app.get('/rooms/:roomId', function (req, res) {
 	retrieveRoom(res, {RoomID: id});
 });
 
+app.get('/room/:roomId/join', function (req, res) {
+	var id = req.params.roomId;
+	console.log('Query single room with id: ' + id);
+	retrieveRoom(res, {RoomID: id});
+});
+
 app.post('/addroom/', jsonParser, function(req, res) {
 	console.log("Attempting to post");
 	//var jsonObj = req.body;
@@ -165,6 +174,6 @@ app.post('/addroom/', jsonParser, function(req, res) {
 
 app.use('/data', express.static(__dirname+'/data'));
 app.use(express.static(__dirname+'/public'));
-app.listen(8000);
+app.listen(port);
 
 

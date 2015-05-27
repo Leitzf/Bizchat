@@ -1,10 +1,10 @@
-<div class="container" style="padding:20px">
+<div class="container-fluid" style="padding:20px">
 
 	<div class="row">
 		<!-- Main body of page -->
-		<div class="col-sm-4">
+		<div class="col-sm-4" style="border: 2px solid black" >
 			<!-- User Profile Information -->
-			<div class="span12" style="border: 2px solid black" ng-controller='ProfileCtrl'>
+			<div class="span12" ng-controller='ProfileCtrl'>
 
 				<div id="profileBar" style="padding:10px">
 					<head>
@@ -17,7 +17,7 @@
 					<!-- AngularJS Form Profile Data -->
 					<form   ng-init='getProfile()'>
 						<p id="name"><strong>{{user.Fname}} {{user.Lname}}</strong></p>
-						<img ng-src="{{user.Picture}}" alt="User Portrait" style="width: 300"/>
+						<img ng-src="{{user.Picture}}" alt="User Portrait" style="Height: 100%; Width: 100%; max-height: 200px; max-width: 300px;"/>
 						<p></p>
 						<p id="email"> <strong>Email:</strong> {{user.EmailAddr}}</p>
 						<p></p>
@@ -34,10 +34,12 @@
 				
 			</div>
 		</div>
+		<div class="col-sm-1">
+		</div>
 
-		<div class="col-sm-8">
+		<div class="col-sm-7" style="border: 2px solid black">
 			<!-- List of public rooms -->
-			<div class="span12" style="border: 2px solid black" ng-controller='RoomListCtrl' ng-init='getRoomList()'>
+			<div class="span12"  ng-controller='RoomListCtrl' ng-init='getRoomList()'>
 				<div id="roomlist" style="padding:10px">
 					<h4><strong><u>Room List</u></strong></h4>
 					<div id="roomlist">
@@ -52,7 +54,7 @@
 						</form>
 						<table class="table table-condensed" style="height:400px;">
 							<tbody style="overflow-y: scroll; height: 400px; width: 93%; position: absolute;">
-								<tr ng-repeat="room in roomlist" style="width: 97.5%; display: inline-table;">
+								<tr ng-repeat="room in roomlist | orderBy: 'Name'" style="width: 97.5%; display: inline-table;">
 									<td  style="vertical-align:middle;">
 										<a href="/#/main" class="list-group-item">{{room.Name}}</a>
 									</td>
