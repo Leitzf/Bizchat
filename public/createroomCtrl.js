@@ -61,7 +61,6 @@ angular
 			*/
 			console.log("Data to post" + JSON.stringify($scope.newRoom) );
 
-			//HTTP NOT FOUND ERROR
 			$http({
 				url: '/addroom/',
 				method: "POST",

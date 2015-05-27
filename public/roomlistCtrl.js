@@ -14,7 +14,6 @@ angular
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
-			   $scope.results = data;
 			   
 			   var roomlist = [];
 			   for (var i = 0; i < data.length; i++) {
@@ -37,7 +36,7 @@ angular
 		$scope.getUserRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
-			   $scope.results = data;
+			   //$scope.results = data;
 			   
 				var userID = 1; //Obtain current user's ID
 

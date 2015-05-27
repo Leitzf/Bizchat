@@ -146,7 +146,7 @@ app.get('/rooms/', function (req, res) {
 	retrieveRoomList(res, req);
 });
 
-app.get('/room/:roomId', function (req, res) {
+app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
 	console.log('Query single room with id: ' + id);
 	retrieveRoom(res, {RoomID: id});
