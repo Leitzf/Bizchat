@@ -34,7 +34,7 @@ angular
 
 		//Initial form data, corresponds to ng-model html data
 		$scope.newRoom = {
-			"RoomID": "nanbreads",
+			"RoomID": "NaNbread",
 			"Name": "",
 			"UserID": "1",
 			"Description": "",
