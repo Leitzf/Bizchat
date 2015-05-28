@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 var url = require('url');
 var app = express();
 var gravatar = require('gravatar');
-var io = require('socket.io').listen(app.listen(port));
+//var io = require('socket.io').listen(app.listen(port));
 
 // create application/json parser
 var jsonParser = bodyParser.json();
