@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 var url = require('url');
 var app = express();
 var gravatar = require('gravatar');
-var io = require('socket.io').listen(app.listen(port));
+//var io = require('socket.io').listen(app.listen(port));
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -113,18 +113,7 @@ function retrieveRoom(res, query) {
 	});
 }
 
-function getRoomCount() {
-	var itemArray;
- 	var query = Rooms.find({});
-	query.exec(function (err, itemArray) {	
-		return itemArray.length;
-	});
-	
-}
 
-
-
-//serve static content for the app from the 'views' directory in the view
 
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
@@ -162,14 +151,18 @@ app.get('/room/:roomId/join', function (req, res) {
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
-	console.log("Attempting to post");
-	//var jsonObj = req.body;
-	//jsonObj.RoomID = getRoomCount()+1;
-	Rooms.create([jsonObj], function (err) {
-		if (err) {
-			console.log('object creation failed');
-		}
+	//console.log("Attempting to post");
+	var jsonObj = req.body;
+	Rooms.count({}, function( err, count){
+    jsonObj.RoomID = count + 1;
+	console.log("RoomID: " + jsonObj.RoomID);
+		Rooms.create([jsonObj], function (err) {
+			if (err) {
+				console.log('object creation failed');
+			}
+		});
 	});
+
 });
 
 app.use('/data', express.static(__dirname+'/data'));

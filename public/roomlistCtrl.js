@@ -14,15 +14,9 @@ angular
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 			   
-<<<<<<< HEAD
+				var userID = 1; //Obtain current user's ID
 			   	var roomlist = [];
 			   	for (var i = 0; i < data.length; i++) {
-=======
-			   var userID = 1; //Obtain current user's ID
-			   
-			   var roomlist = [];
-			   for (var i = 0; i < data.length; i++) {
->>>>>>> 8b85f40ab90415b8b9e8ef15f3fb06b756d4e5fb
 			   		var newRoom = { 
 			   			"Name": data[i].Name,
 			   			"Description": data[i].Description,
@@ -30,11 +24,6 @@ angular
 			   			"RoomID" : data[i].RoomID,
 						"AllowedUsers": data[i].AllowedUsers
 			   		};	
-<<<<<<< HEAD
-				   	roomlist.push(newRoom);
-			   	}
-			   	$rootScope.roomlist = roomlist;
-=======
 				   	if (data[i].UserID == userID){
 					   	roomlist.push(newRoom);
 			   		}
@@ -46,7 +35,6 @@ angular
 					
 			   }
 			   $rootScope.roomlist = roomlist;
->>>>>>> 8b85f40ab90415b8b9e8ef15f3fb06b756d4e5fb
 
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Room data");
@@ -55,22 +43,12 @@ angular
 		};
 
 		$scope.getUserRoomList = function() {
-			$http.get('/rooms/').success(function(data, status, headers, config) {
+			$http.get('/:userId/rooms/').success(function(data, status, headers, config) {
 			   
 				var userID = 1; //Obtain current user's ID
 
-			   	var roomlist = [];
-			   	for (var i = 0; i < data.length; i++) {
-			   		if (data[i].UserID == userID){
-			   			var newRoom = { 
-			   				"Name": data[i].Name,
-			   				"Description": data[i].Description,
-			   				"DateDestroy": data[i].DateDestroy, 
-			   				"RoomID" : data[i].RoomID
-			   			};	
-					   	roomlist.push(newRoom);
-			   		}
-			   	}
+			   	var roomlist = data;
+				
 			   	$rootScope.roomlist = roomlist;
 
 			}).error(function(data, status, headers, config) {
