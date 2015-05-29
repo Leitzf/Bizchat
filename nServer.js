@@ -75,6 +75,7 @@ mongoose.connection.on('open', function() {
 			UserID: String,
 			Description: String,
 			PrivacyEnabled: String,
+			DateDestroy: String,
 			AllowedUsers: [{
 				UserID: String
 			}],
@@ -144,10 +145,10 @@ app.get('/rooms/:roomId', function (req, res) {
 	retrieveRoom(res, {RoomID: id});
 });
 
-app.get('/room/:roomId/join', function (req, res) {
+app.get('/room/join/:roomId', function (req, res) {
 	var id = req.params.roomId;
-	console.log('Query single room with id: ' + id);
-	retrieveRoom(res, {RoomID: id});
+	console.log('Joining room with id: ' + id);
+	//retrieveRoom(res, {RoomID: id});
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
@@ -165,6 +166,7 @@ app.post('/addroom/', jsonParser, function(req, res) {
 
 });
 
+
 //@TODO
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to update");
@@ -180,6 +182,124 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 	});
 });
 
+/*
+var chat = io.on('connection', function (socket) {
+
+	// When the client emits the 'load' event, reply with the 
+	// number of people in this chat room
+
+	socket.on('load',function(data){
+
+		var room = findClientsSocket(io,data);
+		if(room.length === 0 ) {
+
+			socket.emit('peopleinchat', {number: 0});
+		}
+		else{ //if(room.length === 1) {
+
+			socket.emit('peopleinchat', {
+				number: room.length,
+				user: room[0].username,
+				avatar: room[0].avatar,
+				id: data
+			});
+		}
+	});
+
+	// When the client emits 'login', save his name and avatar,
+	// and add them to the room
+	socket.on('login', function(data) {
+
+		var room = findClientsSocket(io, data.id);
+		// Only two people per room are allowed
+		if (1==1) {  //room.length < 2) {
+
+			// Use the socket object to store data. Each client gets
+			// their own unique socket object
+
+			socket.username = data.user;
+			socket.room = data.id;
+			socket.avatar = gravatar.url(data.avatar, {s: '140', r: 'x', d: 'mm'});
+
+			// Tell the person what he should use for an avatar
+			socket.emit('img', socket.avatar);
+
+
+			// Add the client to the room
+			socket.join(data.id);
+
+			if (room.length >= 1) {
+
+				var usernames = [],
+					avatars = [];
+
+				usernames.push(room[0].username);
+				usernames.push(socket.username);
+
+				avatars.push(room[0].avatar);
+				avatars.push(socket.avatar);
+
+				// Send the startChat event to all the people in the
+				// room, along with a list of people that are in it.
+
+				chat.in(data.id).emit('startChat', {
+					boolean: true,
+					id: data.id,
+					users: usernames,
+					avatars: avatars
+				});
+			}
+		}
+	});
+
+	// Somebody left the chat
+	socket.on('disconnect', function() {
+
+		// Notify the other person in the chat room
+		// that his partner has left
+
+		socket.broadcast.to(this.room).emit('leave', {
+			boolean: true,
+			room: this.room,
+			user: this.username,
+			avatar: this.avatar
+		});
+
+		// leave the room
+		socket.leave(socket.room);
+	});
+
+
+	// Handle the sending of messages
+	socket.on('msg', function(data){
+
+		// When the server receives a message, it sends it to the other person in the room.
+		socket.broadcast.to(socket.room).emit('receive', {msg: data.msg, user: data.user, img: data.img});
+	});
+});
+
+function findClientsSocket(io,roomId, namespace) {
+	var res = [],
+		ns = io.of(namespace ||"/");    // the default namespace is "/"
+
+	if (ns) {
+		for (var id in ns.connected) {
+			if(roomId) {
+				var index = ns.connected[id].rooms.indexOf(roomId) ;
+				if(index !== -1) {
+					res.push(ns.connected[id]);
+				}
+			}
+			else {
+				res.push(ns.connected[id]);
+			}
+		}
+	}
+	return res;
+}
+
+*/
+>>>>>>> 23716e63c17e63a771d66e6fdb7039f25035773e
 
 app.use('/data', express.static(__dirname+'/data'));
 app.use(express.static(__dirname+'/public'));

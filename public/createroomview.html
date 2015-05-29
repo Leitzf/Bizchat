@@ -30,25 +30,22 @@
 						<input type="text" class="form-control" id="RoomDescription" ng-model="newRoom.Description" placeholder="Enter Room Description" rows="4" required>
 					</div>
 
-	
-					<div class="form-group" name="public/private">
-						<p>{{newRoom.PrivacyEnabled}}</p>
-						<input type="radio"  ng-model="newRoom.PrivacyEnabled" value="false" >Public<br>
-						<input type="radio" ng-model="newRoom.PrivacyEnabled" value="true" >Private
+					<div class="form-group">
+						<input type="radio" ng-model="newRoom.PrivacyEnabled" name="public/private" value="False">Public<br>
+						<input type="radio" ng-model="newRoom.PrivacyEnabled" name="public/private" value="True">Private
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputDate">Date To Destroy</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="InputDate" ng-model="newRoom.DateDestroy" placeholder="date" ng-disabled="newRoom.DateDestroy == true"> 
+							<input type="text" class="form-control" id="InputDate" ng-model="newRoom.DateDestroy" placeholder="date"> 
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" align="right" ng-model="newRoom.DateDestroy" ngTrueValue="NaN"> Do Not Destroy
+									<input type="checkbox" align="right"> Do Not Destroy
 								</label>
 							</div>
 						</div>
 					</div>
-
 				</form>
 
 			</div>
@@ -73,9 +70,9 @@
 						<tbody style="overflow-y: scroll; height: 258px; width: 100%; position:absolute;">
 							<tr ng-repeat="user in userlist | orderBy: 'Fname'" style="width: 97.5%; display: inline-table;">
 								<td width="7%" style="vertical-align:middle;">
-									<div class="checkbox">
+									<div>
 										<label>
-											<input type="checkbox" value=user.userID>
+											<input type="checkbox" ng-model="newRoom.AllowedUsers.userID" value="{{user.userID}}">
 										</label>
 									</div>
 								</td>
