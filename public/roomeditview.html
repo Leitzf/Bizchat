@@ -29,22 +29,25 @@
 						<input type="text" class="form-control" id="exampleInputRoomDescription" placeholder="Enter Room Description" ng-model="room.Description" required>
 					</div>
 
-					<div class="form-group" >
-						<input type="radio" name="public/private" value="false" checked="room.PrivacyEnabled">Public<br>
-						<input type="radio" name="public/private" value="true" checked="room.PrivacyEnabled">Private
+					<div class="form-group" name="public/private">
+						<input type="radio"  ng-model="room.PrivacyEnabled" value="false" >Public<br>
+						<input type="radio" ng-model="room.PrivacyEnabled" value="true" >Private
 					</div>
 
 					<div class="form-group">
 						<label for="exampleInputDate">Date To Destroy</label>
 						<div class="input-group">
-							<input type="date" class="form-control" id="exampleInputDate" placeholder="date" ng-model="room.DateDestroy"> 
+							<input type="text" class="form-control" id="InputDate" ng-model="room.DateDestroy" placeholder="date" ng-disabled="room.DateDestroy == NaN"> 
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" align="right"> Do Not Destroy
+									<input type="checkbox" align="right" ng-model="room.DateDestroy" value="NaN"> Do Not Destroy
 								</label>
 							</div>
 						</div>
 					</div>
+					
+
+
 				</form>
 
 
