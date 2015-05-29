@@ -70,9 +70,9 @@
 						<tbody style="overflow-y: scroll; height: 258px; width: 100%; position:absolute;">
 							<tr ng-repeat="user in userlist | orderBy: 'Fname'" style="width: 97.5%; display: inline-table;">
 								<td width="7%" style="vertical-align:middle;">
-									<div class="checkbox">
+									<div>
 										<label>
-											<input type="checkbox">
+											<input type="checkbox" ng-model="newRoom.AllowedUsers.userID" value="{{user.userID}}">
 										</label>
 									</div>
 								</td>
