@@ -154,9 +154,12 @@ app.get('/room/join/:roomId', function (req, res) {
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
+	var maxID = Rooms.find().sort({"RoomID":-1}).limit(1).body;
+	console.log("maxID = "+maxID);
 	Rooms.count({}, function( err, count){
-    jsonObj.RoomID = count + 1;
-	console.log("RoomID: " + jsonObj.RoomID);
+
+	    jsonObj.RoomID = count + 1;
+		console.log("RoomID: " + jsonObj.RoomID);
 		Rooms.create([jsonObj], function (err) {
 			if (err) {
 				console.log('object creation failed');
@@ -166,20 +169,17 @@ app.post('/addroom/', jsonParser, function(req, res) {
 
 });
 
-
-//@TODO
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to update");
 	var jsonObj = req.body;
 	var query = { RoomID: req.params.roomId };
-	Rooms.update(query, jsonObj , options, callback);
+	Rooms.update(query, jsonObj, true);
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to delete " + req.params.roomId );
-	Rooms.find({ RoomID : req.params.roomId },function(err,docs){
-    	docs.remove();  //Remove all the documents that match!
-	});
+	Rooms.remove( { RoomID: { $eq: req.params.roomId } }, true )
+
 });
 
 /*
@@ -299,7 +299,6 @@ function findClientsSocket(io,roomId, namespace) {
 }
 
 */
->>>>>>> 23716e63c17e63a771d66e6fdb7039f25035773e
 
 app.use('/data', express.static(__dirname+'/data'));
 app.use(express.static(__dirname+'/public'));

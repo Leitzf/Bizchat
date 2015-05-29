@@ -112,11 +112,12 @@
 		</div>
 	</div>
 
-</div>
-<div class="col-md-9"></div>
-<div class="col-md-3">
-	<div class='btn-toolbar pull-right'>
-		<a type="button" class="btn btn-modify" href="/#/roomlist/">Cancel</a>
-		<button type="button" class="btn btn-danger" ng-click='deleteRoomData()' href="/#/roomlist">Delete Room</button>
+	<div class="col-md-9"></div>
+	<div class="col-md-3">
+		<div class='btn-toolbar pull-right'>
+			<a type="button" class="btn btn-modify" href="/#/roomlist/">Cancel</a>
+			<a type="button" class="btn btn-danger" href="/#/roomlist" ng-click='deleteRoomData()' >Delete Room</a>
+		</div>
+		<p ng-show="roomDeleted">Room Deleted</p>
 	</div>
 </div>

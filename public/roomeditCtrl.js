@@ -53,17 +53,17 @@
 
 		//Delete a Room
 		$scope.deleteRoomData = function() { //@TODO
+			console.log("Attempting Room Delete (Controller)");
 			$scope.roomID = $route.current.params.roomID;
 			
 			$http({
 				url: '/deleteroom/'+ $scope.roomID ,
 				method: "DELETE",
-				data:  JSON.stringify($scope.room),
-				headers: {'Content-Type': 'application/json'}
 			}).success(function (data, status, headers, config) {
-				console.log("Room updated = " + JSON.stringify($scope.room.Name) );
+				console.log("Room deleted = " + JSON.stringify($scope.room.Name) );
+				$scope.roomDeleted = true;
 			}).error(function (data, status, headers, config) {
-				console.log("Update failed");
+				console.log("Delete failed");
 			});	
 		};
 
