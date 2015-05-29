@@ -45,20 +45,8 @@ angular
 		};
 
 		$scope.postRoom = function() {
-			//@TODO Generate New Room ID
-			/*
-			//Obtaining the Room ID
-			var newRoomID = 1;
-			$http.get('/rooms/').success(function(data, status, headers, config) {
-				//Note: Data cannot be acquired if formatted incorrectly. Check the commas
-			   $scope.results = data;
-			   newRoomID += data.length();
-			   console.log("Room ID = "+newRoomID);
-			}).error(function(data, status, headers, config) {
-	  			console.log("Error acquiring Room count");
-			});
-			$scope.newRoom.RoomID = roomID;
-			*/
+			console.log("Attempting to Create Room");
+
 			console.log("Data to post" + JSON.stringify($scope.newRoom) );
 
 			$http({

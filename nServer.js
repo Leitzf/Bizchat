@@ -154,15 +154,18 @@ app.get('/room/join/:roomId', function (req, res) {
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
-	var maxID = Rooms.find().sort({"RoomID":-1}).limit(1).body;
-	console.log("maxID = "+maxID);
 	Rooms.count({}, function( err, count){
-
+		//Incrementing count for unique ids
+		
+		while (Rooms.find({'RoomID': { "$in": count } }).count() > 0){
+			++count;
+			console.log("Count: "count);
+		}
 	    jsonObj.RoomID = count + 1;
 		console.log("RoomID: " + jsonObj.RoomID);
 		Rooms.create([jsonObj], function (err) {
 			if (err) {
-				console.log('object creation failed');
+				console.log('Room creation failed');
 			}
 		});
 	});
@@ -173,7 +176,7 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to update");
 	var jsonObj = req.body;
 	var query = { RoomID: req.params.roomId };
-	Rooms.update(query, jsonObj, true);
+	Rooms.update(query, jsonObj);
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
