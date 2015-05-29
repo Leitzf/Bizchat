@@ -159,7 +159,7 @@ app.post('/addroom/', jsonParser, function(req, res) {
 		
 		while (Rooms.find({'RoomID': { "$in": count } }).count() > 0){
 			++count;
-			console.log("Count: "count);
+			console.log("Count: "+count);
 		}
 	    jsonObj.RoomID = count + 1;
 		console.log("RoomID: " + jsonObj.RoomID);
