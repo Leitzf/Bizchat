@@ -6,7 +6,7 @@
 	<div class="col-md-10"></div>
 	<div class="col-md-2">
 		<div class='btn-toolbar pull-right'>
-			<a type="button" class="btn btn-success" href="/#/roomlist">Update</a> <!-- -->
+			<a type="button" class="btn btn-success" ng-click='updateRoomData()' href="/#/roomlist">Update</a> <!-- -->
 		</div>
 	</div>
 
@@ -117,6 +117,6 @@
 <div class="col-md-3">
 	<div class='btn-toolbar pull-right'>
 		<a type="button" class="btn btn-modify" href="/#/roomlist/">Cancel</a>
-		<button type="button" class="btn btn-danger">Delete Room</button>
+		<button type="button" class="btn btn-danger" ng-click='deleteRoomData()' href="/#/roomlist">Delete Room</button>
 	</div>
 </div>

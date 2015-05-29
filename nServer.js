@@ -165,6 +165,22 @@ app.post('/addroom/', jsonParser, function(req, res) {
 
 });
 
+//@TODO
+app.put('/editroom/:roomId', jsonParser, function(req, res) {
+	console.log("Attempting to update");
+	var jsonObj = req.body;
+	var query = { RoomID: req.params.roomId };
+	Rooms.update(query, jsonObj , options, callback);
+});
+
+app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
+	console.log("Attempting to delete " + req.params.roomId );
+	Rooms.find({ RoomID : req.params.roomId },function(err,docs){
+    	docs.remove();  //Remove all the documents that match!
+	});
+});
+
+
 app.use('/data', express.static(__dirname+'/data'));
 app.use(express.static(__dirname+'/public'));
 app.listen(port);
