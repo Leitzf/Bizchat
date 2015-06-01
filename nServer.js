@@ -2,7 +2,10 @@ var port = 8000;
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+var expressSession = require('express-session');
+var mongoStore = require('connect-mongo')({session: expressSession});
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
 var url = require('url');
 var app = express();
 var gravatar = require('gravatar');
@@ -10,8 +13,35 @@ var gravatar = require('gravatar');
 
 // create application/json parser
 var jsonParser = bodyParser.json();
-
+var passport = require('passport');
 var mongoDBConnection = require('./db.toDoSample.config');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var FACEBOOK_APP_ID = "1572468029682034";
+var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
+
+//connect to mongoDB server
+mongoose.connect(mongoDBConnection.uri);
+
+
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+	callbackURL: "http://me.localtest.me:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's Windows Live profile is returned
+      // to represent the logged-in user.  In a typical application, you would
+      // want to associate the Windows Live account with a user record in your
+      // database, and return that user instead.
+      return done(null, profile);
+    });
+  }
+));
+
 
 var Users;
 var Rooms;
@@ -19,7 +49,7 @@ var Messages;
 var Notifications;
 
 
-mongoose.connect(mongoDBConnection.uri);
+
 
 mongoose.connection.on('open', function() {
 	var Schema = mongoose.Schema;
@@ -169,7 +199,6 @@ app.post('/addroom/', jsonParser, function(req, res) {
 			}
 		});
 	});
-
 });
 
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
@@ -185,6 +214,40 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 });
 
+//AUTHENTICATION
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['public_profile', 'email'] }),
+  function(req, res){
+    // The request will be redirected to Facebook for authentication, so
+    // this function will not be called.
+  });
+
+// GET /auth/facebook/callback 
+//   Use passport.authenticate() as route middleware to authenticate the 
+//   request.  If authentication fails, the user will be redirected back to the 
+//   login page.  Otherwise, the primary route function function will be called, 
+//   which, in this example, will redirect the user to the home page. 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
+
+
+//SOCKETIO
 /*
 var chat = io.on('connection', function (socket) {
 
