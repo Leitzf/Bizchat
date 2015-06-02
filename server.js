@@ -214,7 +214,7 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to update " + id);
 	var jsonObj = req.body;
 	var query = { RoomID: id };
-	console.log(JSON.stringify(jsonObj);
+	console.log(JSON.stringify(jsonObj));
 	console.log([jsonObj]);
 	Rooms.update(query, {$set: jsonObj});
 });
