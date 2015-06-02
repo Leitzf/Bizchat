@@ -37,7 +37,7 @@
 		//Update the room data with the currently entered form data
 		$scope.updateRoomData = function() { //@TODO
 			$scope.roomID = $route.current.params.roomID;
-
+			
 			$http({
 				url: '/editroom/'+ $scope.roomID ,
 				method: "PUT",

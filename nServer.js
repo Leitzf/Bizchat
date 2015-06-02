@@ -191,6 +191,7 @@ app.post('/addroom/', jsonParser, function(req, res) {
 			++count;
 			console.log("Count: "+count);
 		}
+
 	    jsonObj.RoomID = count + 1;
 		console.log("RoomID: " + jsonObj.RoomID);
 		Rooms.create([jsonObj], function (err) {
@@ -202,10 +203,13 @@ app.post('/addroom/', jsonParser, function(req, res) {
 });
 
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
-	console.log("Attempting to update");
+	var id = req.params.roomId;
+	console.log("Attempting to update " + id);
 	var jsonObj = req.body;
-	var query = { RoomID: req.params.roomId };
-	Rooms.update(query, jsonObj);
+	var query = { RoomID: id };
+	console.log(JSON.stringify(jsonObj);
+	console.log([jsonObj]);
+	Rooms.update(query, {$set: jsonObj});
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
