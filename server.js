@@ -13,14 +13,16 @@ var gravatar = require('gravatar');
 
 // create application/json parser
 var jsonParser = bodyParser.json();
-var passport = require('passport');
-var mongoDBConnection = require('./db.toDoSample.config');
-var FacebookStrategy = require('passport-facebook').Strategy;
 
+
+//Facebook authentication
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = "1572468029682034";
 var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
 
 //connect to mongoDB server
+var mongoDBConnection = require('./db.toDoSample.config');
 mongoose.connect(mongoDBConnection.uri);
 
 
