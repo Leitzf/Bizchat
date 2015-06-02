@@ -180,9 +180,10 @@ app.get('/room/join/:roomId', function (req, res) {
 	console.log('Joining room with id: ' + id);
 	//retrieveRoom(res, {RoomID: id});
 });
+//serve static content. website won't load without
+app.use(express.static(__dirname+'/public'));
 
 app.get('/', function(req, res){
-  res.sendfile('./public/index.html');
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
@@ -218,8 +219,7 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 });
 
-//serve static content. website won't load without
-app.use(express.static(__dirname+'/public'));
+
 
 //AUTHENTICATION
 
