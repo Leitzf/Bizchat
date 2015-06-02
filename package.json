@@ -2,7 +2,7 @@
   "name": "Bizchat",
   "version": "1.0.0",
   "description": "Chat with all your friends!",
-  "main": "nServer.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },

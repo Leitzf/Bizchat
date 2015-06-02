@@ -247,8 +247,6 @@ app.get('/logout', function(req, res){
 });
 
 
-
-
 //SOCKETIO
 /*
 var chat = io.on('connection', function (socket) {
@@ -368,8 +366,6 @@ function findClientsSocket(io,roomId, namespace) {
 
 */
 
-app.use('/data', express.static(__dirname+'/data'));
-app.use(express.static(__dirname+'/public'));
 app.listen(port);
 
 
