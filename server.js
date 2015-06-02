@@ -1,4 +1,5 @@
 var port = 8000;
+var http = require('http');
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
@@ -13,14 +14,16 @@ var gravatar = require('gravatar');
 
 // create application/json parser
 var jsonParser = bodyParser.json();
-var passport = require('passport');
-var mongoDBConnection = require('./db.toDoSample.config');
-var FacebookStrategy = require('passport-facebook').Strategy;
 
+
+//Facebook authentication
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = "1572468029682034";
 var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
 
 //connect to mongoDB server
+var mongoDBConnection = require('./db.toDoSample.config');
 mongoose.connect(mongoDBConnection.uri);
 
 
@@ -145,7 +148,6 @@ function retrieveRoom(res, query) {
 }
 
 
-
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
 	console.log('Query single list with id: ' + id);
@@ -165,13 +167,11 @@ app.get('/users/', function (req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
-	console.log('Query for all rooms');
 	retrieveRoomList(res, req);
 });
 
 app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
-	console.log('Query single room with id: ' + id);
 	retrieveRoom(res, {RoomID: id});
 });
 
@@ -179,6 +179,11 @@ app.get('/room/join/:roomId', function (req, res) {
 	var id = req.params.roomId;
 	console.log('Joining room with id: ' + id);
 	//retrieveRoom(res, {RoomID: id});
+});
+//serve static content. website won't load without
+app.use(express.static(__dirname+'/public'));
+
+app.get('/', function(req, res){
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
@@ -218,6 +223,8 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 });
 
+
+
 //AUTHENTICATION
 
 function ensureAuthenticated(req, res, next) {
@@ -231,6 +238,7 @@ app.get('/auth/facebook',
     // The request will be redirected to Facebook for authentication, so
     // this function will not be called.
   });
+
 
 // GET /auth/facebook/callback 
 //   Use passport.authenticate() as route middleware to authenticate the 
@@ -247,8 +255,6 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-
-
 
 
 //SOCKETIO
@@ -370,8 +376,6 @@ function findClientsSocket(io,roomId, namespace) {
 
 */
 
-app.use('/data', express.static(__dirname+'/data'));
-app.use(express.static(__dirname+'/public'));
 app.listen(port);
 
 
