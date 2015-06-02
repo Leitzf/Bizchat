@@ -26,6 +26,11 @@ var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
 var mongoDBConnection = require('./db.toDoSample.config');
 mongoose.connect(mongoDBConnection.uri);
 
+http.createServer(function(req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello World\n');
+}).listen(port);
+
 
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
@@ -184,6 +189,7 @@ app.get('/room/join/:roomId', function (req, res) {
 app.use(express.static(__dirname+'/public'));
 
 app.get('/', function(req, res){
+  res.sendFile('./index.html');
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {

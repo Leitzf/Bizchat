@@ -37,6 +37,8 @@
   ],
   "author": "Group D",
   "license": "ISC",
+  "engines": {
+		"node":">=0.12.2"}
   "bugs": {
     "url": "https://github.com/Leitzf/Bizchat/issues"
   },
