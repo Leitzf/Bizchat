@@ -147,7 +147,6 @@ function retrieveRoom(res, query) {
 }
 
 
-
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
 	console.log('Query single list with id: ' + id);
@@ -167,13 +166,11 @@ app.get('/users/', function (req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
-	console.log('Query for all rooms');
 	retrieveRoomList(res, req);
 });
 
 app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
-	console.log('Query single room with id: ' + id);
 	retrieveRoom(res, {RoomID: id});
 });
 
@@ -216,6 +213,9 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 });
 
+//serve static content. website won't load without
+app.use(express.static(__dirname+'/public'));
+
 //AUTHENTICATION
 
 function ensureAuthenticated(req, res, next) {
@@ -229,6 +229,7 @@ app.get('/auth/facebook',
     // The request will be redirected to Facebook for authentication, so
     // this function will not be called.
   });
+
 
 // GET /auth/facebook/callback 
 //   Use passport.authenticate() as route middleware to authenticate the 
