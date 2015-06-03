@@ -147,6 +147,13 @@ function retrieveRoom(res, query) {
 	});
 }
 
+function retrieveMessages(res, query) {
+ 	var query = Messages.find({});
+	query.exec(function (err, itemArray) {
+		res.json(itemArray);		
+	});
+}
+
 
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
@@ -164,6 +171,34 @@ app.get('/users/', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
 	retrieveUsers(res, req);
+});
+
+
+app.get('/messages/', function(req, res){
+	
+	retrieveMessages(res, req);
+});
+
+
+app.post('/addMessage/', jsonParser, function(req, res) {
+	//console.log("Attempting to post");
+	var jsonObj = req.body;
+	Messages.count({}, function( err, count){
+		//Incrementing count for unique ids
+		
+		while (Messages.find({'MessageID': { "$in": count } }).count() > 0){
+			++count;
+			console.log("Count: "+count);
+		}
+
+	    jsonObj.MessageID = count + 1;
+		console.log("MessageID: " + jsonObj.MessageID);
+		Rooms.create([jsonObj], function (err) {
+			if (err) {
+				console.log('Message post failed');
+			}
+		});
+	});
 });
 
 app.get('/rooms/', function (req, res) {

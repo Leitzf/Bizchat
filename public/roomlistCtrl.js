@@ -11,6 +11,7 @@ angular
 .module('BizchatApp')
 .controller('RoomListCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
+		
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 			   

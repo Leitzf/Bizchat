@@ -1,31 +1,44 @@
 <!-- Main chat room -->
-<div id="mainchat">
-	<div class="span12">
+<div id="mainchat" ng-controller='MainChatCtrl'>
+	<div class="col-md-12" >
 		<h4 id="roomName"><strong>Main Chat</strong></h4>
-		<h5 id="roomDesc">This is a room</h5>
+		<h5 id="roomDesc">This is the main chat room for all members of the super group</h5>
 
-			<!-- chat box (currently a style thing)-->
-		<div align="left" id="chatbox" style="  					 
-			color:red;
-		    text-align:left;
-		    margin:15px;
-		    margin-bottom:25px;
-		    padding:10px;
-		    background:#fff;
-		    height:400px;
-			width:1000px;
-		    border:3px solid #ACD8F0;
-		    overflow:auto;">
-		    <!--width:430px;-->
+		
+		<div class="chatbox" ng-init='getMessages()'>
+			<!-- User Profile Information -->
+			<div id="profilebar">
+				<table  style="height:410px;">
+					<tbody style="overflow-y: scroll; height: 400px; width: 1100px; border:3px solid #ACD8F0; position:absolute;">
+						<tr ng-repeat="mes in messagelist" style="width: 97.5%; display: inline-table;">
+							
+							<td id="message1" style="vertical-align:middle;">
+								<p></p>
+								<strong style="border: 2px solid; width: 100%;">{{mes.Message}}</strong>
+								
+								<p></p>
+							</td>	
+							
+						</tr>
+					</tbody>
+				</table>	
+			</div>
 		</div>
-		<div id="messages"><div>
-		<div align = "left">
-		  <div class="col-xs-9">
-			<input type="message" border="3px" class="form-control" id="mainMessage" placeholder="Type your message...">
-		  </div>
-		  <button type="submit" align = "left" class="btn btn-default">Submit</button>
-		</form>
+	</div>
+	
+	
+	<div class="col-md-12">
+		<div>
+			<form>
+				<div class="col-xs-11" align = "left">
+					<input type="text" border="3px" class="form-control" ng-model="newMessage.Message" id="mainMessage" placeholder="Type your message..."></input>
+				</div>
+			</form>
+			<a type="button"  class="btn btn-default" ng-click="postMessage()" href="/#/mainchat">Submit</a>
 		</div>
+		
 	</div>	
+	<div class="col-md-1"></div>
 </div>
+
 			

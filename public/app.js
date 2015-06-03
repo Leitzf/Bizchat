@@ -37,7 +37,7 @@
         })
   .when('/mainchat', {
     templateUrl: '/mainchatview.html',
-          //controller: 'MainChatCtrl'
+          controller: 'MainChatCtrl'
         })
   .when('/roomlist/createroom/', {
 	 templateUrl: '/createroomview.html',

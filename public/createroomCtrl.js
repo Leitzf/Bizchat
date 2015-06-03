@@ -20,6 +20,37 @@ angular
 	  			return;
 			});
 		};
+		
+		$scope.newUser = {
+			"userID": "",
+			"Fname": "",
+			"Lname": "",
+			"Picture": ""
+		};
+		
+		$scope.getOneUser = function() {
+			$http.get('/users/').success(function(data, status, headers, config) {
+
+			   $scope.userID = userID;
+			
+			   var userlist = [];
+			   for (var i = 0; i < data.length; i++) {
+				   newUser = { 
+				   		"Fname": data[i].Fname,
+						"Lname": data[i].Lname,
+						"Picture": data[i].Picture
+				   	};
+					if(data[i].userID = userID){
+						userlist.push(newUser);
+					}
+			   }
+			   $rootScope.userlist = userlist;
+
+			}).error(function(data, status, headers, config) {
+	  			console.log("Error acquiring Room data");
+	  			return;
+			});
+		};
 
 		//Initial form data, corresponds to ng-model html data
 		$scope.newRoom = {
