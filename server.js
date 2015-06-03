@@ -1,13 +1,15 @@
 var port = 8000;
 var http = require('http');
-var express = require('express');
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
 var mongoStore = require('connect-mongo')({session: expressSession});
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var url = require('url');
+
+var express = require('express');
 var app = express();
+
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
@@ -174,8 +176,7 @@ app.get('/users/', function (req, res) {
 });
 
 
-app.get('/messages/', function(req, res){
-	
+app.get('/messages/', function(req, res){	
 	retrieveMessages(res, req);
 });
 
