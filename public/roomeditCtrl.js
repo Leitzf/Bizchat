@@ -13,6 +13,7 @@
  	function($scope,  $rootScope, $http, $route) {
 
  		$scope.room = {
+ 			"_id":"",
 			"RoomID": "NaNbread",
 			"Name": "",
 			"UserID": "1",

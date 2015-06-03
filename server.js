@@ -214,19 +214,25 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	var id = req.params.roomId;
 	console.log("Attempting to update " + id);
 	var jsonObj = req.body;
-	console.log("Update"+jsonObj);
-	console.log("Update"+[jsonObj]);
-	
-	var query = { RoomID: id };
-	console.log(JSON.stringify(jsonObj));
-	console.log([jsonObj]);
-	Rooms.update(query, {$set: jsonObj});
+	console.log(jsonObj._id);
+	console.log("Update"+JSON.stringify(jsonObj));
+
+	//var query = { _id : jsonObj._id }; //old query
+	Rooms.update(
+		 { RoomID : jsonObj.RoomID } ,  
+    	 jsonObj  ,
+    	  function (err, num) {
+			if (err) {
+				console.log('Room edit failed '+num);
+			}else{
+				console.log("Works");
+			}
+		});
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 	console.log("Attempting to delete " + req.params.roomId );
 	Rooms.remove( { RoomID: { $eq: req.params.roomId } }, true )
-
 });
 
 
