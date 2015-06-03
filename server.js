@@ -7,10 +7,10 @@ var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var url = require('url');
 
-
 var express = require('express');
 var app = express();
-console.log("Express instance created");
+app.set('port', process.env.PORT || 3000);
+
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
@@ -29,7 +29,7 @@ var mongoDBConnection = require('./db.toDoSample.config');
 mongoose.connect(mongoDBConnection.uri);
 
 
-/*
+
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
@@ -217,12 +217,12 @@ app.get('/room/join/:roomId', function (req, res) {
 	console.log('Joining room with id: ' + id);
 	//retrieveRoom(res, {RoomID: id});
 });
-*/
+
 //serve static content. website won't load without
 app.use(express.static(__dirname+'/public'));
 
 
-/*
+
 app.get('/', function(req, res){
   res.sendFile('./index.html');
 });
@@ -426,7 +426,7 @@ function findClientsSocket(io,roomId, namespace) {
 }
 
 */
-*/
-app.listen(port);
+
+app.listen(3000);
 
 
