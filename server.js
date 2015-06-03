@@ -27,6 +27,7 @@ var mongoDBConnection = require('./db.toDoSample.config');
 mongoose.connect(mongoDBConnection.uri);
 
 
+
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
@@ -184,6 +185,7 @@ app.get('/room/join/:roomId', function (req, res) {
 app.use(express.static(__dirname+'/public'));
 
 app.get('/', function(req, res){
+  res.sendFile('./index.html');
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
@@ -216,9 +218,9 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 	console.log("Update"+[jsonObj]);
 	
 	var query = { RoomID: id };
-
-	Rooms.update(query,  jsonObj);
-	
+	console.log(JSON.stringify(jsonObj));
+	console.log([jsonObj]);
+	Rooms.update(query, {$set: jsonObj});
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
