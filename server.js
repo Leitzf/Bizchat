@@ -9,7 +9,6 @@ var url = require('url');
 
 var express = require('express');
 var app = express();
-app.set('port', process.env.PORT || 3000);
 
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
@@ -427,6 +426,7 @@ function findClientsSocket(io,roomId, namespace) {
 
 */
 
-app.listen(3000);
-
-
+var port = process.env.PORT || 3000;
+server.listen(port, function() {
+	console.log("Express server listening on port " + port);
+});
