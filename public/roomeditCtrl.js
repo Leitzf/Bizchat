@@ -12,32 +12,32 @@
  .controller('RoomEditCtrl', ['$scope', '$rootScope', '$http', '$route',
  	function($scope,  $rootScope, $http, $route) {
 
- 		//Obtains Room data of an individual Room by RoomId
-		$scope.getRoomData = function() { 
-			$scope.roomID = $route.current.params.roomID;
-
-			//console.log("Room ID " + $scope.roomID);
-			
-			var userID = 1; //Obtain current user's ID
-
-			$http.get('/rooms/'+ $scope.roomID ).success(function(data, status, headers, config) {
-
-				console.log("Room "+data.RoomID + " successfully obtained")
-
-				$scope.room = data; 
-
-				console.log("Rooms successfully obtained " + JSON.stringify($scope.room.Name));
-
-			}).error(function(data, status, headers, config) {
-				console.log("Error acquiring Room data");
-				return;
-			});
+ 		$scope.room = {
+			"RoomID": "NaNbread",
+			"Name": "",
+			"UserID": "1",
+			"Description": "",
+			"DateDestroy":"",
+			"PrivacyEnabled": "True", //case is important, views use True and False
+			"AllowedUsers": [],
+			"Messages": []
 		};
+
+		$scope.roomID = $route.current.params.roomID;
+
+		$http.get('/rooms/'+ $scope.roomID ).success(function(data, status, headers, config) {
+			$scope.room = data; 
+			console.log("Edit Room "+ $scope.room.RoomID + " data successfully obtained")
+		}).error(function(data, status, headers, config) {
+			console.log("Error acquiring Edit Room data");
+			return;
+		});
 
 		//Update the room data with the currently entered form data
 		$scope.updateRoomData = function() { //@TODO
-			$scope.roomID = $route.current.params.roomID;
-			
+
+			console.log ("Editing "+ $scope.roomID +" room to have " + JSON.stringify($scope.room));
+
 			$http({
 				url: '/editroom/'+ $scope.roomID ,
 				method: "PUT",

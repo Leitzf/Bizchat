@@ -208,13 +208,17 @@ app.post('/addroom/', jsonParser, function(req, res) {
 });
 
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
+	console.log(" Attempting to Update");
 	var id = req.params.roomId;
 	console.log("Attempting to update " + id);
 	var jsonObj = req.body;
+	console.log("Update"+jsonObj);
+	console.log("Update"+[jsonObj]);
+	
 	var query = { RoomID: id };
-	console.log(JSON.stringify(jsonObj);
-	console.log([jsonObj]);
-	Rooms.update(query, {$set: jsonObj});
+
+	Rooms.update(query,  jsonObj);
+	
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
