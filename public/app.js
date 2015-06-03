@@ -41,7 +41,7 @@
         })
   .when('/roomlist/createroom/', {
 	 templateUrl: '/createroomview.html',
-		  controller: 'UserCtrl',
+		  controller: 'CreateCtrl',
 		})
   .when('/chatroom/:roomID', {
 	 templateUrl: '/chatroomview.html',

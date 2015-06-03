@@ -13,7 +13,7 @@ angular
 
 	function($scope,  $rootScope, $http, $route) {
 
-		$scope.userName = "DEMO";
+		$scope.userName = "userName";
 
 		$scope.getChatRoom = function() {
 			//Nearly Equiv to RoomEditCtrl's getRoomData (maybe remove?)
@@ -29,7 +29,7 @@ angular
 				console.log("Room data successfully obtained " + JSON.stringify($scope.room));
 
  				           
-                //get user data (Owner name)
+                //get user data from userID (Owner name)
                 console.log("UserID "+ $scope.room.UserID);
                 
                 $http.get('/user/'+ $scope.room.UserID ).success(function(data, status, headers, config) {
@@ -40,20 +40,22 @@ angular
 				    return;
 			    });
 
-			    //get userlist from (ref:roomlistCtrl)
-			    $scope.userlist = [];
-			    $scope.userlist.push($scope.userName);
-			    for (var i = 0 ; i < $scope.room.AllowedUsers.length ; i++){
-			    	var userID = $scope.room.AllowedUsers[i];
-			    	console.log(userID);
-			    	$http.get('/user/'+ userID ).success(function(data, status, headers, config) {
-			    		if (data != null){
-				    		var newName = data.Fname + " " + data.Lname;
-	                    	$scope.userlist.push(newName);
-	                    	console.log("Obtained user name: " + newName);	
-			    		}
-			    	})
-			    }
+			    //get userlist from list of subscribed users (ref:roomlistCtrl)
+			    if($scope.PrivacyEnabled == "True"){
+				    $scope.userlist = [];
+				    $scope.userlist.push($scope.userName);
+				    for (var i = 0 ; i < $scope.room.AllowedUsers.length ; i++){
+				    	var userID = $scope.room.AllowedUsers[i];
+				    	console.log(userID);
+				    	$http.get('/user/'+ userID ).success(function(data, status, headers, config) {
+				    		if (data != null){
+					    		var newName = data.Fname + " " + data.Lname;
+		                    	$scope.userlist.push(newName);
+		                    	console.log("Obtained user name: " + newName);	
+				    		}
+				    	})
+				    }
+				}
 				               
     
 			}).error(function(data, status, headers, config) {

@@ -13,7 +13,7 @@
 	<div class="col-md-4">
 		<!-- Main body of page -->
 		<div class="rooms">
-			<!-- User Profile Information -->
+			<!-- Room Information -->
 			<div id="profilebar">
 				<head>
 					<h3><strong>Room Information</strong></h3>
@@ -58,10 +58,10 @@
 	
 	<div class="col-md-1"></div>
 	
-	<div class="col-md-6">
+	<div class="col-md-6" name="Adding Users" ng-init='getSubbedUsers()' >
 		<!-- Main body of page -->
-		<div class="guests" ng-controller='UserCtrl' ng-init='getUserList()'>
-			<!-- User Profile Information -->
+		<div class="guests" >
+			<!-- Users in Room -->
 			<div id="profilebar">
 				<head>
 					<h3><strong>Room Members</strong></h3>
@@ -73,7 +73,7 @@
 						<th width="12%"></th>
 					</thead>
 						<tbody style="overflow-y: scroll; height: 258px; width: 100%; position:absolute;">
-							<tr ng-repeat="user in userlist | orderBy: 'Fname'" style="width: 97.5%; display: inline-table;">
+							<tr ng-repeat="user in subbedUsers | orderBy: 'Lname'" style="width: 97.5%; display: inline-table;">
 								<td width="20%" id="picture"><img ng-src="{{user.Picture}}" alt="User Portrait" style="width: 90; vertical-align:middle;"></td>
 								<td width="68%" id="name" style="vertical-align:middle;">{{user.Fname}} {{user.Lname}}</td>
 								<td width="12%" style="vertical-align:middle;">
@@ -85,9 +85,9 @@
 					</table>
 			</div>
 		</div>
-		<div class="guests" ng-controller='UserCtrl' ng-init='getUserList()'>
-			<!-- User Profile Information -->
-			<div id="profilebar">
+		<div class="guests">
+			<!-- Users not in Room -->
+			<div id="Non-Member list" ng-init='getAllUserList()'>
 				<head>
 					<h3><strong>Non-Members</strong></h3>
 				</head>

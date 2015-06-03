@@ -9,25 +9,14 @@
  */
 angular
 .module('BizchatApp')
-.controller('UserCtrl', ['$scope', '$rootScope', '$http',
+.controller('CreateCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
 
 		$scope.getUserList = function() {
 			$http.get('/users/').success(function(data, status, headers, config) {
-			   
-			   var userlist = [];
-			   for (var i = 0; i < data.length; i++) {
-				   userlist[i] = { 
-						"userID": data[i].userID,
-				   		"Fname": data[i].Fname,
-						"Lname": data[i].Lname,
-						"Picture": data[i].Picture
-				   	};
-			   }
-			   $rootScope.userlist = userlist;
-
+			   $rootScope.userlist = data;
 			}).error(function(data, status, headers, config) {
-	  			console.log("Error acquiring Room data");
+	  			console.log("Error acquiring User data");
 	  			return;
 			});
 		};
