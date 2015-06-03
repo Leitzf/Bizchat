@@ -9,7 +9,7 @@ var url = require('url');
 
 var express = require('express');
 var app = express();
-
+var server = http.createServer(app);
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
