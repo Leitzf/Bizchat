@@ -9,7 +9,7 @@ var url = require('url');
 
 var express = require('express');
 var app = express();
-
+console.log("Express instance created");
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
@@ -180,7 +180,6 @@ app.get('/messages/', function(req, res){
 	retrieveMessages(res, req);
 });
 
-
 app.post('/addMessage/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
@@ -203,6 +202,7 @@ app.post('/addMessage/', jsonParser, function(req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
+	console.log("get rooms is failing");
 	retrieveRoomList(res, req);
 });
 
