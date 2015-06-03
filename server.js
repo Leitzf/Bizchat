@@ -1,7 +1,6 @@
 var port = 8000;
 var http = require('http');
 var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
 var mongoStore = require('connect-mongo')({session: expressSession});
