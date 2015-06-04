@@ -1,4 +1,3 @@
-var port = 8000;
 var http = require('http');
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
