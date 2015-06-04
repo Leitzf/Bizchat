@@ -176,20 +176,24 @@ app.get('/app/lists/:listId/count', function (req, res) {
 	retrieveTasksCount(res, {listId: id});
 });
 
+/*
 app.get('/user/:userId', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query user info with id: ' + id);
 	retrieveUserInfo(res, {UserID: id});
 });
+*/
 
 app.get('/user/:userId', function (req, res) {
 	passport.authenticate('facebook', { failureRedirect: '/#/' }),
 	function(req, res) {
-    var email = req.email;
+    console.log(req);
+	console.log(res);
 	console.log('Query user info with email: ' + email);
 	retrieveUserInfo(res, {EmailAddr: email});
 	}
 });
+
 app.get('/users/', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
@@ -223,7 +227,6 @@ app.post('/addMessage/', jsonParser, function(req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
-	console.log("get rooms is failing");
 	retrieveRoomList(res, req);
 });
 
