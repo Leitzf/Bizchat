@@ -119,6 +119,18 @@ mongoose.connection.on('open', function() {
 	   {collection: 'Rooms'}
 	);
 	Rooms = mongoose.model('rooms', RoomSchema);
+
+
+	var CounterSchema = new Schema( 
+		{
+			IDname: String,
+			seq: Number
+		},
+	   {collection: 'Counters'}
+	);
+	Counters = mongoose.model('counters', CounterSchema);
+
+
 	console.log('models have been created');
 });
 
@@ -155,6 +167,9 @@ function retrieveMessages(res, query) {
 		res.json(itemArray);		
 	});
 }
+
+
+
 
 
 app.get('/app/lists/:listId/count', function (req, res) {
@@ -229,22 +244,30 @@ app.get('/', function(req, res){
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
-	Rooms.count({}, function( err, count){
-		//Incrementing count for unique ids
-		
-		while (Rooms.find({'RoomID': { "$in": count } }).count() > 0){
-			++count;
-			console.log("Count: "+count);
-		}
 
-	    jsonObj.RoomID = count + 1;
-		console.log("RoomID: " + jsonObj.RoomID);
-		Rooms.create([jsonObj], function (err) {
+	//Incrementing count for unique ids using Counter database
+   	Counters.findOneAndUpdate(
+    	{ IDname : "RoomID" }, 
+    	{ $inc: {"seq": 1} }, 
+    	{upsert: true},
+    	  function (err, counter) {
 			if (err) {
-				console.log('Room creation failed');
+				console.log('RoomID Counter Increment failed ');
+			}else{
+				//console.log ('RoomID Counter Incremented'+ counter.seq);
+				//Define RoomID
+			    jsonObj.RoomID = String(counter.seq);
+				console.log("RoomID: " + jsonObj.RoomID);
+				Rooms.create([jsonObj], function (err) {
+					if (err) {
+						console.log('Room creation failed');
+					}
+				});			
 			}
-		});
-	});
+		}
+	);
+
+	
 });
 
 app.put('/editroom/:roomId', jsonParser, function(req, res) {

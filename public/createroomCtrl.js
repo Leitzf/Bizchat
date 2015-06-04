@@ -59,7 +59,7 @@ angular
 			"UserID": "1",
 			"Description": "",
 			"DateDestroy":"",
-			"PrivacyEnabled": "True", //case is important, views use True and False
+			"PrivacyEnabled": "False", //case is important, views use True and False
 			"AllowedUsers": [],
 			"Messages": []
 		};
