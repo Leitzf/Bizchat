@@ -11,7 +11,6 @@
 				<table  style="height:410px;">
 					<tbody style="overflow-y: scroll; height: 400px; width: 1100px; border:3px solid #ACD8F0; position:absolute;">
 						<tr ng-repeat="message in messagelist" style="width: 97.5%; display: inline-table;">
-							
 							<td style="vertical-align:middle;">
 								<p></p>
 								<strong style="border: 2px solid; width: 100%;">{{message.Message}} </strong>
@@ -33,7 +32,7 @@
 					<input type="text" border="3px" class="form-control" ng-model="newMessage.Message" id="mainMessage" placeholder="Type your message..."></input>
 				</div>
 			</form>
-			<a type="button"  class="btn btn-default" ng-click="postMessage()" href="/#/mainchat">Submit</a>
+			<a type="button"  class="btn btn-default" ng-click="postMessage()" ng href="/#/mainchat">Submit</a>
 		</div>
 		
 	</div>	
