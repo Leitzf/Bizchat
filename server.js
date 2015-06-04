@@ -200,15 +200,21 @@ app.get('/user/:userId', function (req, res) {
 */
 
 app.get('/user/:userId', function (req, res) {
-	passport.authenticate('facebook', { failureRedirect: '/#/' }),
-	function(req, res) {
-    var email = "flink93@yahoo.com";
-	console.log('Query user info with email: ' + email);
-	retrieveUserInfo(res, {EmailAddr: email});
+	var email;
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  email = req.email[0];
+	  console.log('Query user info with email: ' + email);
+	  retrieveUserInfo(res, {EmailAddr: email});
 	}
+	else {
+	  res.redirect('/#/')
+	}
+	//var email = "flink93@yahoo.com";
+	
 });
 
-app.get('/users/', function (req, res) {
+app.get('/users/', ensureAuthenticated, function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
 	retrieveUsers(res, req);
