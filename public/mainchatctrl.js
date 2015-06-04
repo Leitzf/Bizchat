@@ -11,26 +11,20 @@ angular
 .module('BizchatApp')
 .controller('MainChatCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
-		
+		var messagelist = [];
 		$scope.getMessages = function() {
-			$http.get('/messages/').success(function(data, status, headers, config) {
-			   
-				var roomID = 0; //Obtain current room ID
-				var messagelist = [];
+			$http.get('/messages/').success(function(data, status, headers, config) {	
+				console.log("Message Data acquired")
+				console.log(JSON.stringify(data));		   
+				var RoomID = "0"; //Main chat ID
 				for(var i = 0; i < data.length; i++){
-					var newMess = {
-						"MessageID": data[i].MessageID,
-						"userID": data[i].userID,
-						"Message": data[i].Message, 
-						"TimeStamp": data[i].TimeStamp
-					}
-					if (data[i].roomID == roomID){
-					   	messagelist.push(newMess);
+					console.log(data[i]);
+					if (data[i].RoomID == RoomID){
+					   	messagelist.push(data[i]);
 			   		}	
-					
 				}
-				$rootScope.messagelist = messagelist;	
-
+				$rootScope.messagelist = messagelist;
+				$scope.apply();	
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Message data");
 	  			return;
@@ -38,25 +32,38 @@ angular
 		};
 		
 		$scope.newMessage = {
-			"RoomID": "1",
+			"RoomID": "0",
 			"MessageID": "1",
 			"userID": "1",
 			"Message": "", 
 			"TimeStamp": "5/14/2015"
 		};
 			
-		$scope.postRoom = function() {
+		$scope.postMessage = function() {
 			console.log("Attempting to Post Message to Main Chat");
 
 			console.log("Data to post" + JSON.stringify($scope.newMessage) );
 
+			messagelist.push($scope.newMessage);
+			$scope.$apply();
+
 			$http({
-				url: '/addMessage/',
+				url: '/addmessage/',
 				method: "POST",
 				data:  JSON.stringify($scope.newMessage),
 				headers: {'Content-Type': 'application/json'}
 			}).success(function (data, status, headers, config) {
 				console.log("Data sent = " + JSON.stringify($scope.newMessage) );
+					
+				//refresh message
+				$scope.newMessage = {
+					"RoomID": "0",
+					"MessageID": "1",
+					"userID": "1",
+					"Message": "", 
+					"TimeStamp": "5/14/2015"
+				};	
+
 			}).error(function (data, status, headers, config) {
 				console.log("Data failed");
 			});	

@@ -101,8 +101,6 @@ mongoose.connection.on('open', function() {
 	);
 	Users = mongoose.model('Users', UserSchema);
 	
-	
-	
 	var MessageSchema = new Schema( 
 		{
 			RoomID: String,
@@ -228,24 +226,13 @@ app.get('/messages/', function(req, res){
 	retrieveMessages(res, req);
 });
 
-app.post('/addMessage/', jsonParser, function(req, res) {
-	//console.log("Attempting to post");
+app.post('/addmessage/', jsonParser, function(req, res) {
+	console.log("Posting message");
 	var jsonObj = req.body;
-	Messages.count({}, function( err, count){
-		//Incrementing count for unique ids
-		
-		while (Messages.find({'MessageID': { "$in": count } }).count() > 0){
-			++count;
-			console.log("Count: "+count);
+	Messages.create([jsonObj], function (err) {
+		if (err) {
+			console.log('Message post failed');
 		}
-
-	    jsonObj.MessageID = count + 1;
-		console.log("MessageID: " + jsonObj.MessageID);
-		Rooms.create([jsonObj], function (err) {
-			if (err) {
-				console.log('Message post failed');
-			}
-		});
 	});
 });
 

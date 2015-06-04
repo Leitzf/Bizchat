@@ -10,13 +10,12 @@
 			<div id="profilebar">
 				<table  style="height:410px;">
 					<tbody style="overflow-y: scroll; height: 400px; width: 1100px; border:3px solid #ACD8F0; position:absolute;">
-						<tr ng-repeat="mes in messagelist" style="width: 97.5%; display: inline-table;">
+						<tr ng-repeat="message in messagelist" style="width: 97.5%; display: inline-table;">
 							
-							<td id="message1" style="vertical-align:middle;">
+							<td style="vertical-align:middle;">
 								<p></p>
-								<strong style="border: 2px solid; width: 100%;">{{mes.Message}}</strong>
-								
-								<p></p>
+								<strong style="border: 2px solid; width: 100%;">{{message.Message}} </strong>
+								<p>{{message.userName}}</p>
 							</td>	
 							
 						</tr>
