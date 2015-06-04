@@ -221,11 +221,6 @@ app.get('/room/join/:roomId', function (req, res) {
 app.use(express.static(__dirname+'/public'));
 
 
-
-app.get('/', function(req, res){
-  res.sendFile('./welcome.html');
-});
-
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
