@@ -236,11 +236,6 @@ app.post('/addmessage/', jsonParser, function(req, res) {
 			console.log('Message post failed');
 		}
 	});
-	}
-	else {
-	  res.redirect('/#/')
-	}	
-	//console.log("Attempting to post");
 });
 
 

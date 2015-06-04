@@ -12,6 +12,9 @@ angular
 .controller('MainChatCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
 		var messagelist = [];
+		var userName;
+
+		
 		$scope.getMessages = function() {
 			$http.get('/messages/').success(function(data, status, headers, config) {	
 				console.log("Message Data acquired")
