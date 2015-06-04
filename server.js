@@ -230,11 +230,6 @@ app.get('/room/join/:roomId', function (req, res) {
 app.use(express.static(__dirname+'/public'));
 
 
-
-app.get('/', function(req, res){
-  res.sendFile('./index.html');
-});
-
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
@@ -307,7 +302,7 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/#/' }),
   function(req, res) {
-    res.redirect('/#/main');
+    res.redirect('/rooms/');
   });
 
 app.get('/logout', function(req, res){
