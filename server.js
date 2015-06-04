@@ -212,7 +212,7 @@ app.get('/user/:userId', isLoggedIn, function (req, res) {
 	
 });
 
-app.get('/users/', ensureAuthenticated, function (req, res) {
+app.get('/users/', isLoggedIn, function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
 	retrieveUsers(res, req);
