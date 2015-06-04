@@ -9,6 +9,7 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , expressSession = require('express-session')
   , FacebookStrategy = require('passport-facebook').Strategy;
+  
 var http = require('http');
 var mongoose = require('mongoose');
 var mongoStore = require('connect-mongo')({session: expressSession});
@@ -16,6 +17,12 @@ var bodyParser = require('body-parser')
 var url = require('url');
 
 var app = express();
+
+//initialize passport
+app.use(passport.initialize());
+ app.use(passport.session());
+ app.use(express.Router());
+
 var server = http.createServer(app);
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
