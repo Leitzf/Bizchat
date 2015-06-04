@@ -227,7 +227,6 @@ app.get('/', function(req, res){
 });
 
 app.post('/addroom/', jsonParser, function(req, res) {
-    ensureAuthenticated(req,res, next);
 	//console.log("Attempting to post");
 	var jsonObj = req.body;
 	Rooms.count({}, function( err, count){
@@ -249,7 +248,6 @@ app.post('/addroom/', jsonParser, function(req, res) {
 });
 
 app.put('/editroom/:roomId', jsonParser, function(req, res) {
-    ensureAuthenticated(req,res, next);
 	console.log(" Attempting to Update");
 	var id = req.params.roomId;
 	console.log("Attempting to update " + id);
@@ -271,7 +269,6 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
-    ensureAuthenticated(req,res, next);
 	console.log("Attempting to delete " + req.params.roomId );
 	Rooms.remove( { RoomID: { $eq: req.params.roomId } }, true )
 });
@@ -295,8 +292,8 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
-  });  
+    res.redirect('/main');
+  });
   
 
 // GET /auth/facebook/callback 
