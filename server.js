@@ -10,6 +10,17 @@ var url = require('url');
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat' }));
+
+//Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.Router());
+
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
@@ -32,7 +43,7 @@ mongoose.connect(mongoDBConnection.uri);
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-	callbackURL: "http://me.localtest.me:3000/auth/facebook/callback"
+	callbackURL: "http://bizchattest.azurewebsites.net/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
