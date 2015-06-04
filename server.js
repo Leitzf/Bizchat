@@ -20,8 +20,8 @@ var app = express();
 
 //initialize passport
 app.use(passport.initialize());
- app.use(passport.session());
- app.use(express.Router());
+app.use(passport.session());
+app.use(express.Router());
 
 var server = http.createServer(app);
 var gravatar = require('gravatar');
@@ -309,9 +309,9 @@ app.get('/auth/facebook',
   });
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/#/' }),
+  passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/#/main/');
+    res.redirect('/');
   });
   
 
