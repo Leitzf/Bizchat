@@ -5,22 +5,22 @@ var mongoStore = require('connect-mongo')({session: expressSession});
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var url = require('url');
-
+var gravatar = require('gravatar');
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extend: false}));
 app.use(bodyParser.json());
-app.use(methodOverride());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(expressSession({ secret: 'keyboard cat' }));
 
 //Initialize Passport
+var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.Router());
 
-var gravatar = require('gravatar');
+
 //var io = require('socket.io').listen(app.listen(port));
 
 // create application/json parser
@@ -28,7 +28,6 @@ var jsonParser = bodyParser.json();
 
 
 //Facebook authentication
-var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = "1572468029682034";
 var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
