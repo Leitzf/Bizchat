@@ -204,7 +204,7 @@ app.get('/user/:userId', function (req, res) {
 
 app.get('/user/:userId', isLoggedIn, function (req, res) {
 	var email;
-	console.log(req);
+	console.log(req.user.emails);
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
 	  email = req.emails;
