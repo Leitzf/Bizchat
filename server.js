@@ -203,7 +203,7 @@ app.get('/user/:userId', function (req, res) {
 	var email;
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  email = req.email[0];
+	  email = req.email;
 	  console.log('Query user info with email: ' + email);
 	  retrieveUserInfo(res, {EmailAddr: email});
 	}
