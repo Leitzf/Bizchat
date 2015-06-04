@@ -157,3 +157,92 @@ describe('Test Users List result', function () {
 	});	
 	
 });
+
+describe('Test Retrieving Room by RoomID result', function () {
+	this.timeout(15000);
+
+	var requestResult;
+	var response;
+		 
+	before(function(done) {
+		chai.request('localhost:3000')
+			.get('/rooms/3')
+			.end(function (err, res) {
+				requestResult = res.body;
+				response = res;
+				done();
+			});
+			
+	});
+	
+	it('Should return a room object with the information relating to WTF is node.js', function(done){
+		expect(response).to.have.status(200);
+		expect(requestResult).to.be.an.object;
+		expect(response).to.have.headers;
+		expect(requestResult).to.have.property('Name', 'WTF is node.js');
+		expect(requestResult).to.have.property('RoomID', '3');
+		done();
+	});
+
+
+	it('The object have the expected properties', function(done){
+		expect(response.body).to.satisfy(
+			function (body) {
+				expect(body).to.have.property('Name');
+				expect(body).to.have.property('UserID');
+				expect(body).to.have.property('Description');
+				expect(body).to.have.property('PrivacyEnabled');
+				expect(body).to.have.property('DateDestroy');
+				expect(body).to.have.property('AllowedUsers');
+				expect(body).to.have.property('Messages');
+				return true;
+			});
+		done();
+	});	
+	
+});
+
+describe('Test Retrieving User by UserID result', function () {
+	this.timeout(15000);
+
+	var requestResult;
+	var response;
+		 
+	before(function(done) {
+		chai.request('localhost:3000')
+			.get('/users/65')
+			.end(function (err, res) {
+				requestResult = res.body;
+				response = res;
+				done();
+			});
+			
+	});
+	
+	it('Should return a room object with the information relating to Nicholas', function(done){
+		expect(response).to.have.status(200);
+		expect(requestResult).to.be.an.object;
+		expect(response).to.have.headers;
+		expect(requestResult).to.have.property('Fname', 'Nicholas');
+		expect(requestResult).to.have.property('Lname', 'Simons');
+		done();
+	});
+
+
+	it('The object have the expected properties', function(done){
+		expect(response.body).to.satisfy(
+			function (body) {
+				expect(body).to.have.property('Fname');
+				expect(body).to.have.property('Lname');
+				expect(body).to.have.property('Picture');
+				expect(body).to.have.property('UserID');
+				expect(body).to.have.property('EmailAddr');
+				expect(body).to.have.property('Phone');
+				expect(body).to.have.property('SubscriptionList');
+				expect(body).to.have.property('Notifications');
+				return true;
+			});
+		done();
+	});	
+	
+});
