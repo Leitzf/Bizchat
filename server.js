@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extend: false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(expressSession({ secret: 'keyboard cat' }));
 
 //initialize passport
 app.use(passport.initialize());
