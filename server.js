@@ -53,7 +53,7 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+      console.log(profile);
       // To keep the example simple, the user's Windows Live profile is returned
       // to represent the logged-in user.  In a typical application, you would
       // want to associate the Windows Live account with a user record in your
@@ -332,7 +332,7 @@ function isLoggedIn(req, res, next) {
 }
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: ['public_profile', 'emails'] }),
+  passport.authenticate('facebook', { scope: ['public_profile', 'email'] }),
   function(req, res){
     // The request will be redirected to Facebook for authentication, so
     // this function will not be called.
