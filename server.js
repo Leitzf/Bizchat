@@ -1,4 +1,3 @@
-var port = 8000;
 var http = require('http');
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
@@ -6,11 +5,29 @@ var mongoStore = require('connect-mongo')({session: expressSession});
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var url = require('url');
-
+var gravatar = require('gravatar');
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
-var gravatar = require('gravatar');
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.json());
+app.use(expressSession({ secret: 'keyboard cat' }));
+
+//Initialize Passport
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.Router());
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 //var io = require('socket.io').listen(app.listen(port));
 
 // create application/json parser
@@ -18,7 +35,6 @@ var jsonParser = bodyParser.json();
 
 
 //Facebook authentication
-var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = "1572468029682034";
 var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
@@ -32,7 +48,7 @@ mongoose.connect(mongoDBConnection.uri);
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-	callbackURL: "http://me.localtest.me:3000/auth/facebook/callback"
+	callbackURL: "http://bizchattest.azurewebsites.net/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -52,9 +68,6 @@ var Users;
 var Rooms;
 var Messages;
 var Notifications;
-
-
-
 
 mongoose.connection.on('open', function() {
 	var Schema = mongoose.Schema;
@@ -178,10 +191,21 @@ app.get('/app/lists/:listId/count', function (req, res) {
 	retrieveTasksCount(res, {listId: id});
 });
 
+/*
 app.get('/user/:userId', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query user info with id: ' + id);
 	retrieveUserInfo(res, {UserID: id});
+});
+*/
+
+app.get('/user/:userId', function (req, res) {
+	passport.authenticate('facebook', { failureRedirect: '/#/' }),
+	function(req, res) {
+    var email = "flink93@yahoo.com";
+	console.log('Query user info with email: ' + email);
+	retrieveUserInfo(res, {EmailAddr: email});
+	}
 });
 
 app.get('/users/', function (req, res) {
@@ -217,7 +241,6 @@ app.post('/addMessage/', jsonParser, function(req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
-	console.log("get rooms is failing");
 	retrieveRoomList(res, req);
 });
 
@@ -235,11 +258,6 @@ app.get('/room/join/:roomId', function (req, res) {
 //serve static content. website won't load without
 app.use(express.static(__dirname+'/public'));
 
-
-
-app.get('/', function(req, res){
-  res.sendFile('./index.html');
-});
 
 app.post('/addroom/', jsonParser, function(req, res) {
 	//console.log("Attempting to post");
@@ -292,6 +310,7 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
+
 	console.log("Attempting to delete " + req.params.roomId );
 	Rooms.remove( { RoomID: { $eq: req.params.roomId } }, true )
 });
@@ -302,7 +321,7 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/#/')
 }
 
 app.get('/auth/facebook',
@@ -319,9 +338,9 @@ app.get('/auth/facebook',
 //   login page.  Otherwise, the primary route function function will be called, 
 //   which, in this example, will redirect the user to the home page. 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  passport.authenticate('facebook', { failureRedirect: '/#/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/#/main');
   });
 
 app.get('/logout', function(req, res){
