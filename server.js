@@ -129,6 +129,12 @@ function retrieveUserInfo(res, query) {
 });
 }
 
+function retrieveUserInfoEmail(res, query) {
+    var find = Users.findOne(query, function(err, itemArray){
+    res.json(itemArray);
+});
+}
+
 function retrieveUsers(res, query) {
   	var query = Users.find({});
  	query.exec(function (err, itemArray) {
@@ -202,9 +208,17 @@ app.post('/addMessage/', jsonParser, function(req, res) {
 });
 
 app.get('/rooms/', function (req, res) {
-	console.log("get rooms is failing");
 	retrieveRoomList(res, req);
 });
+
+app.get('/', function (req, res) {
+	res.sendfile('welcome.html');
+});
+
+app.get('/mainpage/', function (req, res) {
+	res.sendfile('mainpage.html');
+});
+
 
 app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
@@ -215,6 +229,11 @@ app.get('/room/join/:roomId', function (req, res) {
 	var id = req.params.roomId;
 	console.log('Joining room with id: ' + id);
 	//retrieveRoom(res, {RoomID: id});
+});
+
+app.get('/mainpage/:email', function (req, res) {
+	var id = req.params.email;
+	retrieveUser(res, {RoomID: id});
 });
 
 //serve static content. website won't load without
@@ -274,7 +293,7 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/')
 }
 
 app.get('/auth/facebook',
@@ -287,7 +306,7 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/main');
+    res.redirect('/mainpage/');
   });
   
 
@@ -297,9 +316,9 @@ app.get('/auth/facebook/callback',
 //   login page.  Otherwise, the primary route function function will be called, 
 //   which, in this example, will redirect the user to the home page. 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successFlash: 'Welcome!' }),
+  passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/mainpage/'+ req.user.email);
   });
 
 app.get('/logout', function(req, res){
