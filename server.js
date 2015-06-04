@@ -53,7 +53,7 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+      console.log(profile);
       // To keep the example simple, the user's Windows Live profile is returned
       // to represent the logged-in user.  In a typical application, you would
       // want to associate the Windows Live account with a user record in your
@@ -189,9 +189,6 @@ function retrieveNotes(res, query) {
 }
 
 
-
-
-
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
 	console.log('Query single list with id: ' + id);
@@ -206,16 +203,23 @@ app.get('/user/:userId', function (req, res) {
 });
 */
 
-app.get('/user/:userId', function (req, res) {
-	passport.authenticate('facebook', { failureRedirect: '/#/' }),
-	function(req, res) {
-    var email = "flink93@yahoo.com";
-	console.log('Query user info with email: ' + email);
-	retrieveUserInfo(res, {EmailAddr: email});
+app.get('/user/:userId', isLoggedIn, function (req, res) {
+	var email;
+	console.log(req);
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  email = req.emails;
+	  console.log('Query user info with email: ' + email);
+	  retrieveUserInfo(res, {EmailAddr: email});
 	}
+	else {
+	  res.redirect('/#/')
+	}
+	//var email = "flink93@yahoo.com";
+	
 });
 
-app.get('/users/', function (req, res) {
+app.get('/users/', isLoggedIn, function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
 	retrieveUsers(res, req);
@@ -332,9 +336,12 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 //AUTHENTICATION
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/#/')
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+    // if they aren't redirect them to the home page
+    res.redirect('/#/');
 }
 
 app.get('/auth/facebook',
