@@ -182,9 +182,6 @@ function retrieveMessages(res, query) {
 }
 
 
-
-
-
 app.get('/app/lists/:listId/count', function (req, res) {
 	var id = req.params.listId;
 	console.log('Query single list with id: ' + id);
@@ -199,11 +196,12 @@ app.get('/user/:userId', function (req, res) {
 });
 */
 
-app.get('/user/:userId', function (req, res) {
+app.get('/user/:userId', isLoggedIn, function (req, res) {
 	var email;
+	console.log(req.emails);
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  email = req.emails;
+	  email = req.emails[0];
 	  console.log('Query user info with email: ' + email);
 	  retrieveUserInfo(res, {EmailAddr: email});
 	}
@@ -325,9 +323,12 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 //AUTHENTICATION
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/#/')
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+    // if they aren't redirect them to the home page
+    res.redirect('/#/');
 }
 
 app.get('/auth/facebook',
