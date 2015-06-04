@@ -212,7 +212,7 @@ app.get('/rooms/', function (req, res) {
 });
 
 app.get('/mainpage/', function (req, res) {
-	res.sendfile('mainpage.html');
+	res.sendFile('./public/mainpageview.html');
 });
 
 
@@ -300,9 +300,9 @@ app.get('/auth/facebook',
   });
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  passport.authenticate('facebook', { failureRedirect: '/#/' }),
   function(req, res) {
-    res.redirect('/mainpage/');
+    res.redirect('/#/main/');
   });
   
 
