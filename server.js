@@ -222,10 +222,6 @@ app.get('/messages/', function(req, res){
 	console.log('=============>user authenticated');
 	  retrieveMessages(res, req);
 	}
-	else {
-	  res.redirect('/#/')
-	}
-	
 });
 
 app.post('/addmessage/', jsonParser, function(req, res) {

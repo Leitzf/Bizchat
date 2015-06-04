@@ -11,21 +11,28 @@ angular
 .module('BizchatApp')
 .controller('MainChatCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
-		var messagelist = [];
-		var userName;
 
-		
+		var messagelist = []; //represents displayed messages NOTE: not equivalent to message database entry
+		var userName = "Nan";
+
 		$scope.getMessages = function() {
 			$http.get('/messages/').success(function(data, status, headers, config) {	
 				console.log("Message Data acquired")
 				console.log(JSON.stringify(data));		   
 				var RoomID = "0"; //Main chat ID
+
 				for(var i = 0; i < data.length; i++){
-					console.log(data[i]);
+					//console.log(data[i]);
 					if (data[i].RoomID == RoomID){
+						var newMessage = {
+							"userName": newUserName,
+							"Message": data[i].Message, 
+							"TimeStamp": data[i].TimeStamp,		
+						}
 					   	messagelist.push(data[i]);
 			   		}	
 				}
+
 				$rootScope.messagelist = messagelist;
 				$scope.apply();	
 			}).error(function(data, status, headers, config) {
@@ -47,8 +54,6 @@ angular
 
 			console.log("Data to post" + JSON.stringify($scope.newMessage) );
 
-			messagelist.push($scope.newMessage);
-			$scope.$apply();
 
 			$http({
 				url: '/addmessage/',
@@ -57,8 +62,14 @@ angular
 				headers: {'Content-Type': 'application/json'}
 			}).success(function (data, status, headers, config) {
 				console.log("Data sent = " + JSON.stringify($scope.newMessage) );
-					
-				//refresh message
+				var newMessage = {
+					"userName": userName,
+					"Message": data[i].Message, 
+					"TimeStamp": data[i].TimeStamp,		
+				}
+				messagelist.push(newMessage);
+
+				$scope.$apply();
 				$scope.newMessage = {
 					"RoomID": "0",
 					"MessageID": "1",
