@@ -194,13 +194,6 @@ app.get('/app/lists/:listId/count', function (req, res) {
 	retrieveTasksCount(res, {listId: id});
 });
 
-/*
-app.get('/user/:userId', function (req, res) {
-	var id = req.params.userId;
-	console.log('Query user info with id: ' + id);
-	retrieveUserInfo(res, {UserID: id});
-});
-*/
 
 app.get('/user/:userId', function (req, res) {
 	var email; 
@@ -212,41 +205,57 @@ app.get('/user/:userId', function (req, res) {
 	}
 	else {
 	  res.redirect('/#/')
-	}
-	//var email = "flink93@yahoo.com";
-	
+	}	
 });
 
-app.get('/users/',  function (req, res) {
-	var id = req.params.userId;
-	console.log('Query users');
-	retrieveUsers(res, req);
+app.get('/users/',  function (req, res) { 
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  retrieveUsers(res, {EmailAddr: email});
+	}
+	else {
+	  res.redirect('/#/')
+	}
 });
 
 
 app.get('/messages/', function(req, res){	
-	retrieveMessages(res, req);
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  retrieveMessages(res, req);
+	}
+	else {
+	  res.redirect('/#/')
+	}
+	
 });
 
 app.post('/addMessage/', jsonParser, function(req, res) {
-	//console.log("Attempting to post");
-	var jsonObj = req.body;
-	Messages.count({}, function( err, count){
+
+	if (req.isAuthenticated()) {
+		console.log('=============>user authenticated');
+		var jsonObj = req.body;
+		Messages.count({}, function( err, count){
 		//Incrementing count for unique ids
-		
+
 		while (Messages.find({'MessageID': { "$in": count } }).count() > 0){
 			++count;
 			console.log("Count: "+count);
 		}
 
-	    jsonObj.MessageID = count + 1;
+		jsonObj.MessageID = count + 1;
 		console.log("MessageID: " + jsonObj.MessageID);
 		Rooms.create([jsonObj], function (err) {
 			if (err) {
-				console.log('Message post failed');
+			console.log('Message post failed');
 			}
 		});
 	});
+	}
+	else {
+	  res.redirect('/#/')
+	}	
+	//console.log("Attempting to post");
 });
 
 
@@ -256,19 +265,33 @@ app.get('/notifications/', function(req, res){	//@TODO, add user authentificatio
 
 
 app.get('/rooms/', function (req, res) {
-	retrieveRoomList(res, req);
+	if (req.isAuthenticated()) {
+		console.log('=============>user authenticated');
+		retrieveRoomList(res, req);
+	}
+	else {
+	  res.redirect('/#/')
+	}
 });
 
 app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
-	retrieveRoom(res, {RoomID: id});
+	if (req.isAuthenticated()) {
+		console.log('=============>user authenticated');
+		retrieveRoom(res, {RoomID: id});
+	}
+	else {
+	  res.redirect('/#/')
+	}
+	
 });
-
+/*
 app.get('/room/join/:roomId', function (req, res) {
 	var id = req.params.roomId;
 	console.log('Joining room with id: ' + id);
 	//retrieveRoom(res, {RoomID: id});
 });
+*/
 
 //serve static content. website won't load without
 app.use(express.static(__dirname+'/public'));
