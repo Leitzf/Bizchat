@@ -211,10 +211,6 @@ app.get('/rooms/', function (req, res) {
 	retrieveRoomList(res, req);
 });
 
-app.get('/', function (req, res) {
-	res.sendfile('./public/welcome.html');
-});
-
 app.get('/mainpage/', function (req, res) {
 	res.sendfile('mainpage.html');
 });
