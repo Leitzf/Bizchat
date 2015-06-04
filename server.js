@@ -209,7 +209,7 @@ app.get('/user/:userId', function (req, res) {
 app.get('/users/',  function (req, res) { 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  retrieveUsers(res, {EmailAddr: email});
+	  retrieveUsers();
 	}
 	else {
 	  res.redirect('/#/')
@@ -226,12 +226,19 @@ app.get('/messages/', function(req, res){
 
 app.post('/addmessage/', jsonParser, function(req, res) {
 	console.log("Posting message");
-	var jsonObj = req.body;
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  var jsonObj = req.body;
 	Messages.create([jsonObj], function (err) {
 		if (err) {
 			console.log('Message post failed');
 		}
 	});
+	}
+	else {
+	  res.redirect('/#/')
+	}	
+	
 });
 
 
