@@ -66,14 +66,11 @@ passport.use(new FacebookStrategy({
 ));
 
 
+//Mongo Schemas
 var Users;
 var Rooms;
 var Messages;
 var Notifications;
-
-
-
-
 mongoose.connection.on('open', function() {
 	var Schema = mongoose.Schema;
 	
