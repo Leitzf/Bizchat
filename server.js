@@ -198,10 +198,10 @@ app.get('/user/:userId', function (req, res) {
 
 app.get('/user/:userId', isLoggedIn, function (req, res) {
 	var email;
-	console.log(req.emails);
+	console.log(req);
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  email = req.emails[0];
+	  email = req.emails;
 	  console.log('Query user info with email: ' + email);
 	  retrieveUserInfo(res, {EmailAddr: email});
 	}
