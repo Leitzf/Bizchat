@@ -80,7 +80,7 @@ mongoose.connection.on('open', function() {
 			Sender: String,
 			Message: String
 		},
-	   {collection: 'notifications'}
+	   {collection: 'Notifications'}
 	);
 	Notifications = mongoose.model('Notifications', NotificationSchema);
 	
@@ -114,7 +114,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'Messages'}
 	);
-	Messages = mongoose.model('messages', MessageSchema);
+	Messages = mongoose.model('Messages', MessageSchema);
 	
 	var RoomSchema = new Schema( 
 		{
@@ -131,7 +131,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'Rooms'}
 	);
-	Rooms = mongoose.model('rooms', RoomSchema);
+	Rooms = mongoose.model('Rooms', RoomSchema);
 
 
 	var CounterSchema = new Schema( 
@@ -141,7 +141,7 @@ mongoose.connection.on('open', function() {
 		},
 	   {collection: 'Counters'}
 	);
-	Counters = mongoose.model('counters', CounterSchema);
+	Counters = mongoose.model('Counters', CounterSchema);
 
 
 	console.log('models have been created');
@@ -176,6 +176,13 @@ function retrieveRoom(res, query) {
 
 function retrieveMessages(res, query) {
  	var query = Messages.find({});
+	query.exec(function (err, itemArray) {
+		res.json(itemArray);		
+	});
+}
+
+function retrieveNotes(res, query) {
+ 	var query = Notifications.find({});
 	query.exec(function (err, itemArray) {
 		res.json(itemArray);		
 	});
@@ -239,6 +246,12 @@ app.post('/addMessage/', jsonParser, function(req, res) {
 		});
 	});
 });
+
+
+app.get('/notifications/', function(req, res){	//@TODO, add user authentification
+	retrieveNotes(res, req);
+});
+
 
 app.get('/rooms/', function (req, res) {
 	retrieveRoomList(res, req);

@@ -57,8 +57,8 @@ angular
 			"RoomID": "NaNbread",
 			"Name": "",
 			"UserID": "1",
-			"Description": "",
-			"DateDestroy":"",
+			"Description": "NaN",
+			"DateDestroy":"NaN",
 			"PrivacyEnabled": "False", //case is important, views use True and False
 			"AllowedUsers": [],
 			"Messages": []
