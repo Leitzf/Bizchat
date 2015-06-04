@@ -17,13 +17,19 @@ var bodyParser = require('body-parser')
 var url = require('url');
 
 var app = express();
+var server = http.createServer(app);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat' }));
 
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.Router());
 
-var server = http.createServer(app);
 var gravatar = require('gravatar');
 //var io = require('socket.io').listen(app.listen(port));
 
