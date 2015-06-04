@@ -204,7 +204,7 @@ app.get('/user/:userId', function (req, res) {
 	  retrieveUserInfo(res, {EmailAddr: email});
 	}
 	else {
-	  res.redirect('/#/')
+	  res.redirect('./public/welcome.html')
 	}	
 });
 
