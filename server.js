@@ -32,7 +32,7 @@ mongoose.connect(mongoDBConnection.uri);
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-	callbackURL: "http://me.localtest.me:3000/auth/facebook/callback"
+	callbackURL: "http://bizchattest.azurewebsites.net/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -289,6 +289,12 @@ app.get('/auth/facebook',
     // this function will not be called.
   });
 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });  
+  
 
 // GET /auth/facebook/callback 
 //   Use passport.authenticate() as route middleware to authenticate the 
