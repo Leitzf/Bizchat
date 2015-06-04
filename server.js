@@ -62,9 +62,6 @@ var Rooms;
 var Messages;
 var Notifications;
 
-
-
-
 mongoose.connection.on('open', function() {
 	var Schema = mongoose.Schema;
 	
@@ -302,7 +299,8 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/#/' }),
   function(req, res) {
-    res.redirect('/rooms/');
+	console.log("Authentication successful");
+    res.redirect('/');
   });
 
 app.get('/logout', function(req, res){
