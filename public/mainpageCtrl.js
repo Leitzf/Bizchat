@@ -23,7 +23,7 @@ angular
 			};
 
 			//@TODO remove hard-coded user
-			$http.get('/user/1').success(function(data, status, headers, config) {
+			$http.get('/user/:userId').success(function(data, status, headers, config) {
 				$scope.user = data;
                 console.log(data);
       			return;
