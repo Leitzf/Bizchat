@@ -1,13 +1,20 @@
-var port = 8000;
+var express = require('express')
+  , passport = require('passport')
+  , util = require('util')
+  , ejs = require('ejs')
+  , http = require('http')
+  , morgan = require('morgan')
+  , bodyParser = require('body-parser')
+  , methodOverride = require('method-override')
+  , cookieParser = require('cookie-parser')
+  , expressSession = require('express-session')
+  , FacebookStrategy = require('passport-facebook').Strategy;
 var http = require('http');
 var mongoose = require('mongoose');
-var expressSession = require('express-session');
 var mongoStore = require('connect-mongo')({session: expressSession});
 var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser');
 var url = require('url');
 
-var express = require('express');
 var app = express();
 var server = http.createServer(app);
 var gravatar = require('gravatar');
@@ -18,8 +25,6 @@ var jsonParser = bodyParser.json();
 
 
 //Facebook authentication
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = "1572468029682034";
 var FACEBOOK_APP_SECRET = "56b92a5ccb70019a8ee1a24d4087afa9";
 
