@@ -202,7 +202,7 @@ app.get('/user/:userId', function (req, res) {
 });
 */
 
-app.get('/user/:userId', isLoggedIn, function (req, res) {
+app.get('/user/:userId', function (req, res) {
 	var email; 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
@@ -217,7 +217,7 @@ app.get('/user/:userId', isLoggedIn, function (req, res) {
 	
 });
 
-app.get('/users/', isLoggedIn, function (req, res) {
+app.get('/users/',  function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
 	retrieveUsers(res, req);
