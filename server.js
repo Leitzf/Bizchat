@@ -332,7 +332,7 @@ function isLoggedIn(req, res, next) {
 }
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: ['public_profile', 'email'] }),
+  passport.authenticate('facebook', { scope: ['public_profile', 'emails'] }),
   function(req, res){
     // The request will be redirected to Facebook for authentication, so
     // this function will not be called.
