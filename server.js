@@ -209,7 +209,7 @@ app.get('/user/:userId', function (req, res) {
 app.get('/users/',  function (req, res) { 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  retrieveUsers(res, {EmailAddr: email});
+	  retrieveUsers();
 	}
 	else {
 	  res.redirect('/#/')
