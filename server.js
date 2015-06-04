@@ -20,6 +20,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.Router());
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 //var io = require('socket.io').listen(app.listen(port));
 
