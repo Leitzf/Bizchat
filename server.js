@@ -182,6 +182,14 @@ app.get('/user/:userId', function (req, res) {
 	retrieveUserInfo(res, {UserID: id});
 });
 
+app.get('/user/:userId', function (req, res) {
+	passport.authenticate('facebook', { failureRedirect: '/#/' }),
+	function(req, res) {
+    var email = req.email;
+	console.log('Query user info with email: ' + email);
+	retrieveUserInfo(res, {EmailAddr: email});
+	}
+});
 app.get('/users/', function (req, res) {
 	var id = req.params.userId;
 	console.log('Query users');
@@ -277,6 +285,7 @@ app.put('/editroom/:roomId', jsonParser, function(req, res) {
 });
 
 app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
+
 	console.log("Attempting to delete " + req.params.roomId );
 	Rooms.remove( { RoomID: { $eq: req.params.roomId } }, true )
 });
@@ -287,7 +296,7 @@ app.delete('/deleteroom/:roomId', jsonParser, function(req, res) {
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/#/')
 }
 
 app.get('/auth/facebook',
