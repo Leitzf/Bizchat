@@ -212,7 +212,7 @@ app.get('/rooms/', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-	res.sendfile('welcome.html');
+	res.sendfile('./public/welcome.html');
 });
 
 app.get('/mainpage/', function (req, res) {
