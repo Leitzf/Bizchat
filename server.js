@@ -311,7 +311,7 @@ app.get('/auth/facebook/callback',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/#/mainpage/');
+    res.redirect('/#/main/');
   });
 
 app.get('/logout', function(req, res){
