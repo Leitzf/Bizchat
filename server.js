@@ -211,9 +211,6 @@ app.get('/rooms/', function (req, res) {
 	retrieveRoomList(res, req);
 });
 
-app.get('/mainpage/', function (req, res) {
-	res.sendFile('./public/mainpageview.html');
-});
 
 
 app.get('/rooms/:roomId', function (req, res) {
@@ -314,7 +311,7 @@ app.get('/auth/facebook/callback',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/mainpage/'+ req.user.email);
+    res.redirect('/#/mainpage/');
   });
 
 app.get('/logout', function(req, res){
