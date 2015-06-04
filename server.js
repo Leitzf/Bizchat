@@ -203,11 +203,10 @@ app.get('/user/:userId', function (req, res) {
 */
 
 app.get('/user/:userId', isLoggedIn, function (req, res) {
-	var email;
-	console.log(req.user.emails);
+	var email; 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
-	  email = req.emails;
+	  email = req.user.emails[0];
 	  console.log('Query user info with email: ' + email);
 	  retrieveUserInfo(res, {EmailAddr: email});
 	}
