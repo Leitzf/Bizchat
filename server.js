@@ -187,8 +187,7 @@ app.get('/user/:userId', function (req, res) {
 app.get('/user/:userId', function (req, res) {
 	passport.authenticate('facebook', { failureRedirect: '/#/' }),
 	function(req, res) {
-    console.log(req);
-	console.log(res);
+    var email = "flink93@yahoo.com";
 	console.log('Query user info with email: ' + email);
 	retrieveUserInfo(res, {EmailAddr: email});
 	}
