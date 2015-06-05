@@ -49,7 +49,7 @@ angular
 				   		}	
 				    });
 				}
-
+				console.log(messagelist);
 				$rootScope.messagelist = messagelist;
 				$scope.apply();	
 			}).error(function(data, status, headers, config) {
