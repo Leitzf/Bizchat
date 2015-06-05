@@ -45,7 +45,7 @@ angular
 								"Message": data[i].Message, 
 								"TimeStamp": data[i].TimeStamp,		
 							}
-						   	messagelist.push(data[i]);
+						   	messagelist.push(newMessage);
 				   		//}	
 				    });
 				}
