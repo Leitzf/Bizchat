@@ -276,7 +276,7 @@ app.get('/rooms/', function (req, res) {
 	*/
 });
 
-app.get('/rooms/:userID', function (req, res) {	
+app.get('/:userID/rooms/', function (req, res) {	
 	var id = req.params.userID; 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
