@@ -50,7 +50,6 @@ angular
 				    });
 				}
 				console.log("messagelist"+ messagelist);
-
 				$rootScope.messagelist = messagelist;
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Message data");
