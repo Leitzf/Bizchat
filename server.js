@@ -248,24 +248,24 @@ app.get('/notifications/', function(req, res){	//@TODO, add user authentificatio
 
 
 app.get('/rooms/', function (req, res) {
-	if (req.isAuthenticated()) {
-		console.log('=============>user authenticated');
+	//if (req.isAuthenticated()) {
+	//	console.log('=============>user authenticated');
 		retrieveRoomList(res, req);
-	}
-	else {
-	  res.redirect('/#/')
-	}
+	//}
+	//else {
+	//  res.redirect('/#/')
+	//}
 });
 
 app.get('/rooms/:roomId', function (req, res) {
 	var id = req.params.roomId;
-	if (req.isAuthenticated()) {
-		console.log('=============>user authenticated');
+	//if (req.isAuthenticated()) {
+	//	console.log('=============>user authenticated');
 		retrieveRoom(res, {RoomID: id});
-	}
-	else {
-	  res.redirect('/#/')
-	}
+	//}
+	//else {
+	//  res.redirect('/#/')
+	//}
 	
 });
 /*
