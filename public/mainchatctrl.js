@@ -49,9 +49,8 @@ angular
 				   		//}	
 				    //});
 				}
-				console.log(messagelist);
+				console.log("messagelist"+ messagelist);
 				$rootScope.messagelist = messagelist;
-				$scope.apply();	
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Message data");
 	  			return;
