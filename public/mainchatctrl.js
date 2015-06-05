@@ -14,23 +14,36 @@ angular
 
 		var messagelist = []; //represents displayed messages NOTE: not equivalent to message database entry
 		var userName = "Nan";
+		$http.get('/user/:userID' ).success(function(data, status, headers, config) {
+            userName = data.Fname + " " + data.Lname;
+            console.log("Obtained User name: " + userName);
+	    }).error(function(data, status, headers, config) {
+		    console.log("Error acquiring Owner data");
+		    return;
+	    });
 
 		$scope.getMessages = function() {
 			$http.get('/messages/').success(function(data, status, headers, config) {	
 				console.log("Message Data acquired")
-				console.log(JSON.stringify(data));		   
+				//console.log(JSON.stringify(data));		   
 				var RoomID = "0"; //Main chat ID
 
 				for(var i = 0; i < data.length; i++){
 					//console.log(data[i]);
-					if (data[i].RoomID == RoomID){
-						var newMessage = {
-							"userName": newUserName,
-							"Message": data[i].Message, 
-							"TimeStamp": data[i].TimeStamp,		
-						}
-					   	messagelist.push(data[i]);
-			   		}	
+					var newName = "NaN";
+			        $http.get('/user/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
+			            newName = userdata.Fname + " " + userdata.Lname;
+			            console.log("Obtained User name: " + $scope.userName);
+
+						if (data[i].RoomID == RoomID){
+							var newMessage = {
+								"userName": newName,
+								"Message": data[i].Message, 
+								"TimeStamp": data[i].TimeStamp,		
+							}
+						   	messagelist.push(data[i]);
+				   		}	
+				    });
 				}
 
 				$rootScope.messagelist = messagelist;
@@ -54,22 +67,22 @@ angular
 
 			console.log("Data to post" + JSON.stringify($scope.newMessage) );
 
-
 			$http({
 				url: '/addmessage/',
 				method: "POST",
 				data:  JSON.stringify($scope.newMessage),
 				headers: {'Content-Type': 'application/json'}
 			}).success(function (data, status, headers, config) {
-				console.log("Data sent = " + JSON.stringify($scope.newMessage) );
+
+				console.log("Message sent = " + JSON.stringify($scope.newMessage) );
 				var newMessage = {
 					"userName": userName,
-					"Message": data[i].Message, 
-					"TimeStamp": data[i].TimeStamp,		
+					"Message": $scope.newMessage.Message, 
+					"TimeStamp": $scope.newMessage.TimeStamp,		
 				}
 				messagelist.push(newMessage);
-
 				$scope.$apply();
+
 				$scope.newMessage = {
 					"RoomID": "0",
 					"MessageID": "1",
