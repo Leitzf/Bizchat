@@ -15,7 +15,7 @@ angular
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 			   
-				var userID = 1; //Obtain current user's ID
+				//var userID = 1; //Obtain current user's ID
 			   	var roomlist = [];
 			   	for (var i = 0; i < data.length; i++) {
 			   		var newRoom = { 
@@ -24,15 +24,19 @@ angular
 			   			"DateDestroy": data[i].DateDestroy, 
 			   			"RoomID" : data[i].RoomID,
 						"AllowedUsers": data[i].AllowedUsers
-			   		};	
+			   		};
+			   		roomlist.push(newRoom); // 
+			   		/*	
+			   		//@TODO future function, do not allow user to see rooms they are not involved in
 				   	if (data[i].UserID == userID){
-					   	roomlist.push(newRoom);
+					   	
 			   		}
 					for(var j = 0; j < data[i].AllowedUsers.length; j++){
 						if(data[i].AllowedUsers[j] == userID){
 							roomlist.push(newRoom);
 						}
 					}
+					*/
 					
 			   }
 			   $rootScope.roomlist = roomlist;
@@ -44,14 +48,9 @@ angular
 		};
 
 		$scope.getUserRoomList = function() {
-			$http.get('/:userId/rooms/').success(function(data, status, headers, config) {
-			   
-				var userID = 1; //Obtain current user's ID
-
+			$http.get('/rooms/:userID').success(function(data, status, headers, config) {
 			   	var roomlist = data;
-				
 			   	$rootScope.roomlist = roomlist;
-
 			}).error(function(data, status, headers, config) {
 	  			console.log("Error acquiring Room data");
 	  			return;
