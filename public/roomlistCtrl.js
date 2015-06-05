@@ -59,7 +59,7 @@ angular
 		};
 
 		$scope.getUserRoomList = function() {
-			$http.get('/rooms/:userID').success(function(data, status, headers, config) {
+			$http.get('/rooms/' + UserID ).success(function(data, status, headers, config) {
 			   	var roomlist = data;
 			   	$rootScope.roomlist = roomlist;
 			}).error(function(data, status, headers, config) {
