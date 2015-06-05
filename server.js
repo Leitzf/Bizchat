@@ -277,7 +277,12 @@ app.get('/rooms/:roomId', function (req, res) {
 	else {
 	  res.redirect('/#/')
 	}
+<<<<<<< HEAD
 	*/	
+=======
+	*/
+	
+>>>>>>> 332663c... removed authentification non-secure handling
 });
 /*
 app.get('/room/join/:roomId', function (req, res) {
