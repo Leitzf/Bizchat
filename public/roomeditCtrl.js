@@ -12,7 +12,6 @@
  .controller('RoomEditCtrl', ['$scope', '$rootScope', '$http', '$route',
  	function($scope,  $rootScope, $http, $route) {
 
-
  		//Get Room data
  		$scope.room = {
  			"_id":"",
@@ -30,7 +29,7 @@
 
 		$http.get('/rooms/'+ $scope.roomID ).success(function(data, status, headers, config) {
 			$scope.room = data; 
-			console.log("Edit Room "+ $scope.room.RoomID + " data successfully obtained")
+			console.log("Edit Room "+ $scope.room.RoomID + " data successfully obtained");
 		}).error(function(data, status, headers, config) {
 			console.log("Error acquiring Edit Room data");
 			return;
