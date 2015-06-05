@@ -158,7 +158,7 @@ describe('Test Users List result', function () {
 	
 });
 
-describe('Test Retrieving Room by RoomID result', function () {
+describe('Test Retrieving A Room by RoomID result', function () {
 	this.timeout(15000);
 
 	var requestResult;
@@ -201,3 +201,4 @@ describe('Test Retrieving Room by RoomID result', function () {
 	});	
 	
 });
+

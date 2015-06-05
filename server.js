@@ -159,7 +159,7 @@ function retrieveUsers(res, query) {
  }
 
 function retrieveRoomList(res, query) {
- 	var query = Rooms.find({});
+ 	var query = Rooms.find(query);
 	query.exec(function (err, itemArray) {
 		res.json(itemArray);		
 	});
@@ -265,6 +265,18 @@ app.get('/rooms/', function (req, res) {
 	}
 	else {
 	  res.redirect('/#/')
+	}
+});
+
+app.get('/:userID/rooms/', function (req, res) {	
+	var id = req.params.userID; 
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  console.log('Query user rooms with userID: ' + id);
+	  retrieveRoomList(res, {UserID: id});
+	}
+	else {
+	  res.redirect('./public/welcome.html')
 	}
 });
 
