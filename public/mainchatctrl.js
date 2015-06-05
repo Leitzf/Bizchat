@@ -14,8 +14,10 @@ angular
 
 		var messagelist = []; //represents displayed messages NOTE: not equivalent to message database entry
 		var userName = "Nan";
+		var UserID;
 		$http.get('/user/:userID' ).success(function(data, status, headers, config) {
             userName = data.Fname + " " + data.Lname;
+            UserID = data.UserID;
             console.log("Obtained User name: " + userName);
 	    }).error(function(data, status, headers, config) {
 		    console.log("Error acquiring Owner data");
@@ -58,7 +60,7 @@ angular
 		$scope.newMessage = {
 			"RoomID": "0",
 			"MessageID": "1",
-			"userID": "1",
+			"userID": UserID,
 			"Message": "", 
 			"TimeStamp": "5/14/2015"
 		};
