@@ -277,8 +277,7 @@ app.get('/rooms/:roomId', function (req, res) {
 	else {
 	  res.redirect('/#/')
 	}
-	*/
-	
+	*/	
 });
 /*
 app.get('/room/join/:roomId', function (req, res) {
