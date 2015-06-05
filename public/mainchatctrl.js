@@ -19,7 +19,7 @@ angular
             userName = data.Fname + " " + data.Lname;
             UserID = data.UserID;
             console.log("Obtained User name: " + userName);
-            console.log("Obtained User ID: " + userName);
+            console.log("Obtained User ID: " + UserID);
 	    }).error(function(data, status, headers, config) {
 		    console.log("Error acquiring Joining User data");
 		    return;
@@ -35,7 +35,7 @@ angular
 					//console.log(data[i]);
 					var newName = "NaN";
 					console.log(data[i].UserID);
-			        $http.get('/user/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
+			        $http.get('/user/info/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
 			            newName = userdata.Fname + " " + userdata.Lname;
 			            console.log("Obtained User name: " + newName);
 
@@ -85,15 +85,17 @@ angular
 					"TimeStamp": $scope.newMessage.TimeStamp,		
 				}
 				messagelist.push(newMessage);
-				$scope.$apply();
 
+				//refresh message scope
 				$scope.newMessage = {
 					"RoomID": "0",
 					"MessageID": "1",
-					"userID": "1",
+					"userID": UserID,
 					"Message": "", 
 					"TimeStamp": "5/14/2015"
 				};	
+				$scope.$apply();
+
 
 			}).error(function (data, status, headers, config) {
 				console.log("Data failed");

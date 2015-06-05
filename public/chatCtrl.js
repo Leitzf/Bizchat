@@ -32,7 +32,7 @@ angular
                 //get user data from userID (Owner name)
                 console.log("UserID "+ $scope.room.UserID);
                 
-                $http.get('/user/'+ $scope.room.UserID ).success(function(data, status, headers, config) {
+                $http.get('/user/info/'+ $scope.room.UserID ).success(function(data, status, headers, config) {
                     $scope.userName = data.Fname + " " + data.Lname;
                     console.log("Obtained Owner name: " + $scope.userName);
 			    }).error(function(data, status, headers, config) {
