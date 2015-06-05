@@ -39,14 +39,14 @@ angular
 			            newName = userdata.Fname + " " + userdata.Lname;
 			            console.log("Obtained User name: " + newName);
 
-						if (data[i].RoomID == RoomID){
+						//if (data[i].RoomID == RoomID){
 							var newMessage = {
 								"userName": newName,
 								"Message": data[i].Message, 
 								"TimeStamp": data[i].TimeStamp,		
 							}
 						   	messagelist.push(data[i]);
-				   		}	
+				   		//}	
 				    });
 				}
 				console.log(messagelist);
