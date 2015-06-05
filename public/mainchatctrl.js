@@ -46,8 +46,7 @@ angular
 								"TimeStamp": data[i].TimeStamp,		
 							}
 						   	messagelist.push(newMessage);
-				   		//}	
-				    //});
+				    });
 				}
 				console.log("messagelist"+ messagelist);
 
