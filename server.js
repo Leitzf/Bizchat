@@ -105,7 +105,7 @@ mongoose.connection.on('open', function() {
 		{
 			RoomID: String,
 			MessageID: String,
-			userID: String,
+			UserID: String,
 			Message: String, 
 			TimeStamp: String
 		},

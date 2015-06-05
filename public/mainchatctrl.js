@@ -31,7 +31,8 @@ angular
 				for(var i = 0; i < data.length; i++){
 					//console.log(data[i]);
 					var newName = "NaN";
-			        $http.get('/user/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
+					console.log(data[i].userID);
+			        $http.get('/user/'+ data[i].userID ).success(function(userdata, status, headers, config) {
 			            newName = userdata.Fname + " " + userdata.Lname;
 			            console.log("Obtained User name: " + $scope.userName);
 
