@@ -235,7 +235,6 @@ app.get('/rooms/:roomId', function (req, res) {
 		retrieveRoom(res, {RoomID: id});
 
 });
-<<<<<<< HEAD
 
 app.get('/rooms/:userID', function (req, res) {	
 	var id = req.params.userID; 
@@ -243,8 +242,6 @@ app.get('/rooms/:userID', function (req, res) {
 	console.log('Query user rooms with userID: ' + id);
 	retrieveRoomList(res, {UserID: id});
 });
-=======
->>>>>>> 92a7a0a... Local server
 /*
 app.get('/room/join/:roomId', function (req, res) {
 	var id = req.params.roomId;
