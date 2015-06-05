@@ -194,15 +194,6 @@ app.get('/app/lists/:listId/count', function (req, res) {
 
 
 app.get('/user/:userId', function (req, res) {
-<<<<<<< HEAD
-	var userID = req.params.roomId;
-	console.log('Query user info with email: ' + email);
-	retrieveUserInfo(res, {UserID: userID});
-});
-
-app.get('/users/',  function (req, res) { 
-	  retrieveUsers(res, req);
-=======
 	var email; 
 	  email = req.user.emails[0].value;
 	  console.log('Query user info with email: ' + email);
@@ -210,8 +201,7 @@ app.get('/users/',  function (req, res) {
 });
 
 app.get('/users/',  function (req, res) { 
-	  retrieveUsers();
->>>>>>> 92a7a0a... Local server
+	  retrieveUsers(res, req);
 });
 
 
