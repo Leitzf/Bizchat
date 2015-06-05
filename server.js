@@ -206,6 +206,17 @@ app.get('/user/:userId', function (req, res) {
 	}	
 });
 
+app.get('/user/info/:ID', function (req, res) {
+	var id = req.params.ID; 
+	if (req.isAuthenticated()) {
+	console.log('=============>user authenticated');
+	  retrieveUserInfo(res, {UserID: id});
+	}
+	else {
+	  res.redirect('./public/welcome.html')
+	}	
+});
+
 app.get('/users/',  function (req, res) { 
 	if (req.isAuthenticated()) {
 	console.log('=============>user authenticated');
