@@ -35,9 +35,9 @@ angular
 					//console.log(data[i]);
 					var newName = "NaN";
 					console.log(data[i].UserID);
-			        $http.get('/user/info/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
-			            newName = userdata.Fname + " " + userdata.Lname;
-			            console.log("Obtained User name: " + newName);
+			       // $http.get('/user/info/'+ data[i].UserID ).success(function(userdata, status, headers, config) {
+			         //   newName = userdata.Fname + " " + userdata.Lname;
+			          //  console.log("Obtained User name: " + newName);
 
 						//if (data[i].RoomID == RoomID){
 							var newMessage = {
@@ -47,7 +47,7 @@ angular
 							}
 						   	messagelist.push(newMessage);
 				   		//}	
-				    });
+				    //});
 				}
 				console.log(messagelist);
 				$rootScope.messagelist = messagelist;
