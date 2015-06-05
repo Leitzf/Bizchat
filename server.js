@@ -159,7 +159,7 @@ function retrieveUsers(res, query) {
  }
 
 function retrieveRoomList(res, query) {
- 	var query = Rooms.find(query);
+ 	var query = Rooms.find({});
 	query.exec(function (err, itemArray) {
 		res.json(itemArray);		
 	});
@@ -200,17 +200,6 @@ app.get('/user/:userId', function (req, res) {
 	  email = req.user.emails[0].value;
 	  console.log('Query user info with email: ' + email);
 	  retrieveUserInfo(res, {EmailAddr: email});
-	}
-	else {
-	  res.redirect('./public/welcome.html')
-	}	
-});
-
-app.get('/user/info/:ID', function (req, res) {
-	var id = req.params.ID; 
-	if (req.isAuthenticated()) {
-	console.log('=============>user authenticated');
-	  retrieveUserInfo(res, {UserID: id});
 	}
 	else {
 	  res.redirect('./public/welcome.html')
@@ -274,18 +263,6 @@ app.get('/rooms/', function (req, res) {
 	  res.redirect('/#/');
 	}
 	*/
-});
-
-app.get('/:userID/rooms/', function (req, res) {	
-	var id = req.params.userID; 
-	if (req.isAuthenticated()) {
-	console.log('=============>user authenticated');
-	  console.log('Query user rooms with userID: ' + id);
-	  retrieveRoomList(res, {UserID: id});
-	}
-	else {
-	  res.redirect('./public/welcome.html')
-	}
 });
 
 app.get('/rooms/:roomId', function (req, res) {
