@@ -11,7 +11,18 @@ angular
 .module('BizchatApp')
 .controller('RoomListCtrl', ['$scope', '$rootScope', '$http',
 	function($scope,  $rootScope, $http) {
-		
+
+		var UserID;
+		$http.get('/user/:userID' ).success(function(data, status, headers, config) {
+            UserID = data.UserID;
+            console.log("Obtained User ID: " + UserID);
+	    }).error(function(data, status, headers, config) {
+		    console.log("Error acquiring Joining User data");
+		    return;
+	    });
+
+
+
 		$scope.getRoomList = function() {
 			$http.get('/rooms/').success(function(data, status, headers, config) {
 			   
@@ -48,7 +59,7 @@ angular
 		};
 
 		$scope.getUserRoomList = function() {
-			$http.get('/rooms/:userID').success(function(data, status, headers, config) {
+			$http.get('/rooms/' + UserID ).success(function(data, status, headers, config) {
 			   	var roomlist = data;
 			   	$rootScope.roomlist = roomlist;
 			}).error(function(data, status, headers, config) {
