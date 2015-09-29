@@ -46,8 +46,13 @@ angular
 								"TimeStamp": data[i].TimeStamp,		
 							}
 						   	messagelist.push(newMessage);
+<<<<<<< HEAD
 				   		//}	
 				    //});
+=======
+
+				    });
+>>>>>>> origin/Current
 				}
 				console.log("messagelist"+ messagelist);
 				$rootScope.messagelist = messagelist;

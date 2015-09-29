@@ -277,8 +277,12 @@ app.get('/rooms/:roomId', function (req, res) {
 	else {
 	  res.redirect('/#/')
 	}
+<<<<<<< HEAD
 	*/
 	
+=======
+	*/	
+>>>>>>> origin/Current
 });
 /*
 app.get('/room/join/:roomId', function (req, res) {
