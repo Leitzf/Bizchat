@@ -21,36 +21,11 @@
           <ul class="nav navbar-nav">
             <li><a href="/#/mainchat">Main Chat</a></li>
           </ul>
-		  
-		  <ul class="nav navbar-nav" ng-controller='DropdownCtrl'>
-				<li class="dropdown" dropdown on-toggle="toggled(open)"> 
-				<a class="dropdown-toggle" data-toggle="dropdown" >
-					Notifications <span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-					<li ng-repeat="note in notifications">
-						<a href>{{note.NotificationCode}}  |  {{note.Sender}}</a>
-					</li>
-					</ul>
-				</li>
-		  </ul>
-		  
-          <!--Hide Logout button when not logged in-->
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/">Logout</a></li>
-          </ul>
-          </div>
-        </div>
-      </nav>
-
-      <!--Views and Container-->
-      <div ng-view=""></div>
-    </div>
 
 <!-- It's at the bottom so that it will load faster-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
@@ -60,15 +35,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-touch.js"></script> 
-
-    <script src="app.js"></script>
-    <script src="mainpageCtrl.js"></script>
-    <script src="roomlistCtrl.js"></script>
-    <script src="roomeditCtrl.js"></script>
-    <script src="createroomCtrl.js"></script>
-    <script src="indexCtrl.js"></script>
-    <script src="chatCtrl.js"></script>
-	<script src="mainchatctrl.js"></script>
-
   </body>
 </html>
