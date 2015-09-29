@@ -1,43 +1,49 @@
 <html>
   <head>
-    <!--CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <base href="/">
+    <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
   </head>
 
   <body ng-app="BizchatApp">
     <div class="container">
 
-      <!-- Static navbar (on every view) -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-          <a class="navbar-brand" href="/#/main">Neil Leitz</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="resume.html"></a>Senior Design Project</li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li><a href="contactInfo.html"></a>Resume</li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li><a href="resume.html"></a>Contact Info</li>
-          </ul>
-          
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
+		  <!-- Static navbar -->
+		  <nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">Neil Leitz</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="#">About Me</a></li>
+				  <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					  <li><a href="seniorDesign.html">Senior Design</a></li>
+					</ul>
+				  </li>
+				  <li><a href="#">Resume</a></li>
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div><!--/.container-fluid -->
+		  </nav>
+		  
+		  <!-- Main component for a primary marketing message or call to action -->
+		  <div class="jumbotron">
+			<h1>Welcome to my webpage!</h1>
+			<p>Learn a little about me and take a look at some of my projects.</p>
+		  </div>
 
-
+		</div> <!-- /container -->
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</body>
   </body>
-  <!-- It's at the bottom so that it will load faster-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </html>
